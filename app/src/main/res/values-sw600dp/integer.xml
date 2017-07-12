@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="ripple_time">150</integer>
+    <integer name="btn_ems">8</integer>
+    <item name="flag_weight" format="float" type="dimen">.4</item>
+</resources>

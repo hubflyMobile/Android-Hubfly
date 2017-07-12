@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">CTQ</string>
+    <string name="media">Select Media</string>
+
+    <string name="country_prompt">Choose a country</string>
+
+    <string-array name="cust">
+        <item>Please Select Customer</item>
+        <item>VESTAS</item>
+
+    </string-array>
+    <string-array name="portno">
+        <item>Please Select Part No</item>
+        <item>VES S01</item>
+    </string-array>
+    <string-array name="dept">
+        <item>Please Select Machine</item>
+        <item>Win 7 VM</item>
+
+    </string-array>
+    <string-array name="moulding">
+        <item>Please Select No of Moulding</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string name="customer_name">Customer Name</string>
+    <string name="part_name">Part No</string>
+    <string name="job_code">Heat No</string>
+    <string name="create_by">Created By</string>
+    <string name="create_date">Created</string>
+    <string name="ctq">CTQ</string>
+    <string name="qap">QAP</string>
+</resources>

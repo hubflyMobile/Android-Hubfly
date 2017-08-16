@@ -3,50 +3,30 @@ package com.hubfly.ctq.util;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
 
-import org.apache.http.NameValuePair;
 import org.json.JSONObject;
-
-import java.util.List;
 
 public class HttpApi extends AsyncTask<String, String, String> {
     private ProgressDialog pDialog;
     Activity activity;
     OnResponseCallback callback;
     Boolean isShowLoader = true;
-    Utility mUtility;
-    String url,method,option;
-    List<NameValuePair> nameValuePair;
+    String url, method;
     JSONObject mJsonObject;
 
-    public HttpApi(Activity activity, ProgressDialog mProgressDialog, OnResponseCallback callback) {
+    public HttpApi(Activity activity, Boolean isShowLoader, OnResponseCallback callback, String url, String method, JSONObject mJsonObject) {
         this.activity = activity;
-        this.pDialog = mProgressDialog;
         this.callback = callback;
-        mUtility = new Utility(activity);
-    }
-
-    public HttpApi(Activity activity, ProgressDialog mProgressDialog, Boolean isShowLoader, OnResponseCallback callback, String url, String method, String option, List<NameValuePair> nameValuePair, JSONObject mJsonObject
-    ) {
-        this.activity = activity;
-        this.pDialog = mProgressDialog;
-        this.callback = callback;
-        mUtility = new Utility(activity);
         this.isShowLoader = isShowLoader;
         this.url = url;
         this.method = method;
-        this.option = option;
-        this.nameValuePair = nameValuePair;
         this.mJsonObject = mJsonObject;
     }
 
     protected void onPreExecute() {
         super.onPreExecute();
-        if (this.isShowLoader && activity != null) {
-            if (pDialog != null) {
-                pDialog.show();
-            }
+        if (this.isShowLoader) {
+            pDialog = Utility.showLoading(activity);
         }
     }
 
@@ -54,17 +34,14 @@ public class HttpApi extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... args) {
         String json = null;
-        // Building Parameters
         try {
-            json = new ApiClient().makeHttpRequest(activity,url,method,nameValuePair,option,mJsonObject);
-            if (json!=null) {
-                Log.d("Create Response", json.toString());
+            if (Utility.isInternetConnected(activity)) {
+                json = new ApiClient().makeHttpRequest(activity, url, method, mJsonObject);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        if (json!=null)
+        if (json != null)
             return json.toString();
         else
             return null;
@@ -72,17 +49,16 @@ public class HttpApi extends AsyncTask<String, String, String> {
     }
 
     protected void onPostExecute(String requestType) {
-        // dismiss the dialog once done
-        if (pDialog != null && pDialog.isShowing()) {
-            pDialog.dismiss();
-            pDialog = null;
-        }
         try {
+            if (pDialog != null && pDialog.isShowing()) {
+                pDialog.dismiss();
+                pDialog = null;
+            }
             if (requestType != null) {
-                Log.d("Response Data :", requestType);
+                Utility.logging("Response Data :" + requestType);
                 callback.responseCallBack(activity, requestType);
             } else {
-                Log.d("RESULT", "no result found");
+                Utility.logging("Response Data :" + "No Result");
                 callback.responseCallBack(activity, requestType);
             }
         } catch (Exception e) {

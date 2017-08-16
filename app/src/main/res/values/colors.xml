@@ -7,6 +7,7 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="title">#333</color>
+    <color name="ll_cto_value_bg">#f5f3f4</color>
     <color name="readmore">#FF3366</color>
     <color name="bg_popup_button_color">#ff3824</color>
     <color name="list__border_bg">#ededed</color>

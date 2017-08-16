@@ -7,6 +7,7 @@
     <include layout="@layout/app_common_toolbar" />
 
     <LinearLayout
+        android:id="@+id/ll_root_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -14,9 +15,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="65dp"
             android:orientation="horizontal"
-            android:weightSum="8">
+            android:weightSum="7">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -32,27 +33,7 @@
                     android:gravity="center"
                     android:text="@string/customer_name"
                     android:textColor="@color/title"
-                    android:textSize="@dimen/txt_large"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <com.hubfly.ctq.util.CustomTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/part_name"
-                    android:textColor="@color/title"
-                    android:textSize="@dimen/txt_large"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/txt_medium" />
 
             </LinearLayout>
 
@@ -70,8 +51,7 @@
                     android:gravity="center"
                     android:text="@string/job_code"
                     android:textColor="@color/title"
-                    android:textSize="@dimen/txt_large"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/txt_medium" />
 
             </LinearLayout>
 
@@ -87,10 +67,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/create_by"
+                    android:text="@string/part_name"
                     android:textColor="@color/title"
-                    android:textSize="@dimen/txt_large"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/txt_medium" />
 
             </LinearLayout>
 
@@ -99,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:visibility="visible"
                 android:gravity="center">
 
                 <com.hubfly.ctq.util.CustomTextView
@@ -106,10 +86,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/create_date"
+                    android:text="@string/heat_no"
                     android:textColor="@color/title"
-                    android:textSize="@dimen/txt_large"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/txt_medium" />
 
             </LinearLayout>
 
@@ -118,17 +97,18 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:gravity="center"
+                android:weightSum="1">
 
                 <com.hubfly.ctq.util.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_weight="0.41"
                     android:gravity="center"
                     android:text="@string/ctq"
                     android:textColor="@color/title"
-                    android:textSize="@dimen/txt_large"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/txt_medium" />
 
             </LinearLayout>
 
@@ -146,8 +126,7 @@
                     android:gravity="center"
                     android:text="@string/qap"
                     android:textColor="@color/title"
-                    android:textSize="@dimen/txt_large"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/txt_medium" />
 
             </LinearLayout>
         </LinearLayout>
@@ -155,16 +134,84 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/black"></LinearLayout>
+            android:background="@color/list__border_bg"></LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_close_ctq"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"></LinearLayout>
+            android:layout_margin="4dp"
+            android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/ic_edt_search_rectangle"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight=".02"
+                    android:src="@drawable/ic_open_search" />
+
+                <EditText
+                    android:id="@+id/edt_search"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight=".94"
+                    android:background="@color/white"
+                    android:hint="Search Job Code"
+                    android:paddingLeft="25dp"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@drawable/black_cursor"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/txt_small_medium" />
+
+                <ImageView
+                    android:id="@+id/img_clear"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="17dp"
+                    android:layout_weight=".02"
+                    android:src="@drawable/ic_open_clear" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_open_ctq"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_no_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.hubfly.ctq.util.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="No data available"
+                    android:textColor="@color/title"
+                    android:textSize="@dimen/txt_medium" />
+
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>

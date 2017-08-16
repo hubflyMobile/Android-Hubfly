@@ -27,8 +27,9 @@
 
             <com.hubfly.ctq.util.RippleView
                 android:id="@+id/rv_back"
-                android:layout_width="55dp"
-                android:layout_height="wrap_content">
+                android:layout_width="100dp"
+                android:gravity="center"
+                android:layout_height="75dp">
 
                 <ImageView
                     android:id="@+id/img_back"

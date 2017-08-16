@@ -21,9 +21,9 @@
             <LinearLayout
                 android:id="@+id/ll_card"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="60dp"
                 android:orientation="horizontal"
-                android:weightSum="8">
+                android:weightSum="7">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -38,28 +38,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:textColor="@color/title"
-                        android:textSize="@dimen/txt_large" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <com.hubfly.ctq.util.CustomTextView
-                        android:id="@+id/txt_part_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColor="@color/title"
-                        android:textSize="@dimen/txt_large"
-                         />
-
+                        android:textColor="@color/title_sub_txt_name_color"
+                        android:textSize="@dimen/txt_small_medium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -75,10 +55,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:textColor="@color/title"
-                        android:textSize="@dimen/txt_large"
-                        />
-
+                        android:textColor="@color/title_sub_txt_name_color"
+                        android:textSize="@dimen/txt_small_medium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -89,34 +67,33 @@
                     android:gravity="center">
 
                     <com.hubfly.ctq.util.CustomTextView
-                        android:id="@+id/txt_created_by"
+                        android:id="@+id/txt_part_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:textColor="@color/title"
-                        android:textSize="@dimen/txt_large"
-                       />
-
+                        android:textColor="@color/title_sub_txt_name_color"
+                        android:textSize="@dimen/txt_small_medium" />
                 </LinearLayout>
+
+
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:visibility="visible"
                     android:gravity="center">
 
                     <com.hubfly.ctq.util.CustomTextView
-                        android:id="@+id/txt_create_date"
+                        android:id="@+id/txt_heat_no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:textColor="@color/title"
-                        android:textSize="@dimen/txt_large"
-                       />
-
+                        android:textColor="@color/title_sub_txt_name_color"
+                        android:textSize="@dimen/txt_small_medium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -132,12 +109,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:textColor="@color/title"
-                        android:textSize="@dimen/txt_large"
-                      />
-
+                        android:textColor="@color/title_sub_txt_name_color"
+                        android:textSize="@dimen/txt_small_medium" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -151,10 +125,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:textColor="@color/title"
-                        android:textSize="@dimen/txt_large"
-                        />
-
+                        android:textColor="@color/title_sub_txt_name_color"
+                        android:textSize="@dimen/txt_small_medium" />
                 </LinearLayout>
             </LinearLayout>
         </com.hubfly.ctq.util.RippleView>

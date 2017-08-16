@@ -5,7 +5,7 @@
     <dimen name="txt_small">16dp</dimen>
     <dimen name="txt_small_medium">18dp</dimen>
     <dimen name="txt_large">24dp</dimen>
-    <dimen name="txt_medium">22dp</dimen>
+    <dimen name="txt_medium">19dp</dimen>
 
     <!--CirCular Progress-->
     <dimen name="circular_progress_bar_width">45dp</dimen>

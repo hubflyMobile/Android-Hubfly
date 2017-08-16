@@ -1,12 +1,9 @@
 package com.hubfly.ctq.util;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.net.Uri;
 import android.util.TypedValue;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -14,7 +11,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
 import com.hubfly.ctq.R;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
 import java.util.HashMap;
@@ -30,8 +26,6 @@ public class GlideUtil {
     SessionManager mSessionManager;
     String RTFA = "", FedAuth = "";
     HashMap<String, String> mHashMap;
-    ImageLoader mImageLoader = ImageLoader.getInstance();
-    boolean isUrlModified = false;
 
     public GlideUtil(Activity c) {
         this.context = c;
@@ -97,6 +91,7 @@ public class GlideUtil {
                                 .fitCenter()
                                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                                 .thumbnail(0.5f)
+                                .bitmapTransform(new CropCircleTransformation(context, PxToDp(context, mRadius), "#FDFBFA"))
                                 .crossFade()
                                 .into(view);
                     } else {
@@ -105,6 +100,7 @@ public class GlideUtil {
                                 .error(drawable)
                                 .thumbnail(0.5f)
                                 .fitCenter()
+                                .bitmapTransform(new CropCircleTransformation(context, PxToDp(context, mRadius), "#FDFBFA"))
                                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                                 .dontAnimate()
                                 .into(view);
@@ -160,33 +156,16 @@ public class GlideUtil {
     }
 
     int getDefaultImage(int option) {
-                int drawable = R.mipmap.ic_launcher;
-                switch (option) {
-                    case 0:
-                        drawable = R.mipmap.ic_launcher;
-                        break;
-        }
-        return drawable;
-    }
-
-
-    public int ReturnImage(int Option) {
-        int ResourceID = 0;
-        switch (Option) {
-            case 0://Profile
-                ResourceID = R.mipmap.ic_launcher;
+        int drawable = R.drawable.ic_user_profile;
+        switch (option) {
+            case 0:
+                drawable = R.drawable.ic_user_profile;
+                break;
+            case 1:
+                drawable = R.drawable.ic_user_profile;
                 break;
         }
-        return ResourceID;
-    }
-
-    public Dialog getDialog(Context context) {
-        final Dialog mDialog = new Dialog(context, R.style.DialogSlideAnim);
-        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        mDialog.getWindow().setBackgroundDrawableResource(R.drawable.app_dialog_bg);
-        mDialog.setCancelable(true);
-        return mDialog;
+        return drawable;
     }
 
 

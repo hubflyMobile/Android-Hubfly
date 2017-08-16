@@ -1,9 +1,9 @@
 package com.hubfly.ctq.fragement;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,11 +15,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hubfly.ctq.Model.ActivityModel;
+import com.hubfly.ctq.Model.ImageModel;
 import com.hubfly.ctq.Model.OpenCtqModel;
 import com.hubfly.ctq.R;
 import com.hubfly.ctq.adapter.CtoListAdapter;
+import com.hubfly.ctq.util.Config;
+import com.hubfly.ctq.util.HttpApi;
+import com.hubfly.ctq.util.OnResponseCallback;
 import com.hubfly.ctq.util.RippleView;
 import com.hubfly.ctq.util.Utility;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -35,10 +44,9 @@ public class OpenCtQ extends Fragment {
     CtoListAdapter mAdapter;
     RecyclerView mRvOpenCTQ;
     Utility mUtility;
-    LinearLayout mLlOpenCtq,mLlNoData,mLlRootList;
+    LinearLayout mLlOpenCtq, mLlNoData, mLlRootList;
     EditText mEdtSearch;
     ImageView mImgClear;
-
 
     @Nullable
     @Override
@@ -49,7 +57,7 @@ public class OpenCtQ extends Fragment {
         InitiizationViews(rootView);
         SetClickEvents();
         setAdapter();
-        GetData();
+        getJobWiseDetails();
         return rootView;
     }
 
@@ -69,25 +77,16 @@ public class OpenCtQ extends Fragment {
         mRvOpenCTQ = mUtility.CustomRecycleView(getActivity(), mLlOpenCtq);
         mTxtHeading.setText("Open Quality Assurance Check");
 
+        mLlRootList.setVisibility(View.GONE);
         mUtility.HideShowKeyboard(getActivity(), mEdtSearch, "0");
-        mLlRootList.getBackground().setAlpha(45);
     }
 
-    void GetData() {
-        mAlOpenCtq.add(new OpenCtqModel("L&T", "LT02", "MAH S01", "Chandrasekar", "6th july ,3.40pm", "4/12", "9/12"));
-        mAlOpenCtq.add(new OpenCtqModel("VESTAS", "LT03", "MAH S02", "Sivaraj", "5th july ,5.40am", "5/12", "9/12"));
-        mAlOpenCtq.add(new OpenCtqModel("Wipro", "LT04", "MAH S03", "Hari", "7th july ,12.40pm", "4/12", "9/12"));
-    }
 
     void SetClickEvents() {
         mRvImgNavigation.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
             @Override
             public void onComplete(RippleView rippleView) {
-                DrawerLayout drawerLayout = (DrawerLayout) getActivity()
-                        .findViewById(R.id.drawer_layout);
-                LinearLayout drawerList = (LinearLayout) getActivity()
-                        .findViewById(R.id.testing);
-                drawerLayout.openDrawer(drawerList);
+                mUtility.OpenDrawer(getActivity());
             }
         });
 
@@ -102,7 +101,6 @@ public class OpenCtQ extends Fragment {
                 String text = mEdtSearch.getText().toString().trim();
                 if (text != null && !text.equals("")) {
                     mAdapter.getFilter().filter(text);
-                    mUtility.HideShowKeyboard(getActivity(), mEdtSearch, "0");
                 } else {
                     mAdapter.getFilter().filter(text);
                     mUtility.HideShowKeyboard(getActivity(), mEdtSearch, "0");
@@ -125,11 +123,108 @@ public class OpenCtQ extends Fragment {
     }
 
     void setAdapter() {
-        mAdapter = new CtoListAdapter(getActivity(), mAlOpenCtq, "1",mLlNoData,mLlOpenCtq);
+        mAdapter = new CtoListAdapter(getActivity(), mAlOpenCtq, mLlNoData, mLlOpenCtq, true);
         mRvOpenCTQ.setAdapter(mAdapter);
     }
 
 
+    void getJobWiseDetails() {
+        try {
+            if (Utility.isInternetConnected(getActivity())) {
+                JSONObject mJsonObject = mUtility.SendParams(getActivity(), "0", null, null);
+                HttpApi api = new HttpApi(getActivity(), true, mOnResponseCallbackActivity, Config.Baseurl + Config.GetOpenQACToday, "POST", mJsonObject);
+                api.execute();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
+    public OnResponseCallback mOnResponseCallbackActivity = new OnResponseCallback() {
+        @Override
+        public void responseCallBack(Activity activity, String responseString) {
+            Utility.logging(responseString);
+            if (mAlOpenCtq.size() > 0) {
+                mAlOpenCtq.clear();
+            }
+            try {
+                if (responseString != null && !responseString.equals("")) {
+                    JSONArray mJsonArray = new JSONArray(responseString);
+                    for (int i = 0; i < mJsonArray.length(); i++) {
+                        JSONObject mJsonObject = mJsonArray.getJSONObject(i);
+                        OpenCtqModel mOpenCtqModel = mUtility.SetOpenCtqData(mJsonObject.getInt("PartID"), mJsonObject.getString("HeatNumber"), mJsonObject.getString("CustomerName"), mJsonObject.getString("JobCode"), mJsonObject.getString("PartName"), mJsonObject.getString("CTQStatus"), mJsonObject.getString("QAPStatus"));
+                        ArrayList<ActivityModel> mAlCtq = new ArrayList<>();
+                        if (mJsonObject.has("CTQJobs")) {
+                            JSONArray mCtqJson = mJsonObject.getJSONArray("CTQJobs");
+                            for (int j = 0; j < mCtqJson.length(); j++) {
+                                JSONObject mObject = mCtqJson.getJSONObject(j);
+                                ActivityModel mActivityModel = mUtility.SetActivityData(mObject.getInt("ID"), mObject.getInt("JobIDHF"), mObject.getInt("PartIDHF"), mObject.getString("HeatNoHF"), mObject.getBoolean("VerifiedHF"), mObject.getString("ActivityNameHF"));
+                                mActivityModel.setCTQMinValueHF(mObject.getInt("CTQMinValueHF"));
+                                mActivityModel.setCTQMaxValueHF(mObject.getInt("CTQMaxValueHF"));
+                                if (mObject.getString("CTQValueHF") != null) {
+                                    mActivityModel.setCTQValueHF(mObject.getString("CTQValueHF"));
+                                }
+                                if (mObject.getString("RemarksHF") != null) {
+                                    mActivityModel.setRemarksHF(mObject.getString("RemarksHF"));
+                                }
+                                mAlCtq.add(mActivityModel);
+                            }
+                            mOpenCtqModel.setmAlCtq(mAlCtq);
+                        }
+
+                        ArrayList<ActivityModel> mAlQap = new ArrayList<>();
+                        if (mJsonObject.has("QAPJobs")) {
+                            JSONArray mQapJson = mJsonObject.getJSONArray("QAPJobs");
+                            for (int j = 0; j < mQapJson.length(); j++) {
+                                JSONObject mObject = mQapJson.getJSONObject(j);
+                                ActivityModel mActivityModel = mUtility.SetActivityData(mObject.getInt("ID"), mObject.getInt("JobIDHF"), mObject.getInt("PartIDHF"), mObject.getString("HeatNoHF"), mObject.getBoolean("VerifiedHF"), mObject.getString("ActivityNameHF"));
+                                if (mObject.has("RemarksHF") && mObject.getString("RemarksHF") != null) {
+                                    mActivityModel.setRemarksHF(mObject.getString("RemarksHF"));
+                                }
+                                if (mObject.has("CTQMinValueHF")) {
+                                    mActivityModel.setCTQMinValueHF(mObject.getInt("CTQMinValueHF"));
+                                }
+                                if (mObject.has("CTQMaxValueHF")) {
+                                    mActivityModel.setCTQMaxValueHF(mObject.getInt("CTQMaxValueHF"));
+                                }
+                                ArrayList<ImageModel> mImgAl = new ArrayList<>();
+                                if (mObject.has("AttachmentFiles")) {
+                                    JSONArray jsonArray = mObject.getJSONArray("AttachmentFiles");
+                                    for (int k = 0; k < jsonArray.length(); k++) {
+                                        JSONObject jsonObject = jsonArray.getJSONObject(k);
+                                        ImageModel mImageModel = new ImageModel();
+                                        mImageModel.setBaseImage(Config.ImageUrl +jsonObject.getString("ServerRelativeUrl"));
+                                        mImageModel.setFileName(jsonObject.getString("FileName"));
+                                        mImgAl.add(mImageModel);
+                                    }
+                                    mActivityModel.setmAlImage(mImgAl);
+                                }
+                                mAlQap.add(mActivityModel);
+                            }
+                            mOpenCtqModel.setmAlQap(mAlQap);
+                        }
+                        mAlOpenCtq.add(mOpenCtqModel);
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } finally {
+                mAdapter.notifyDataSetChanged();
+                mLlRootList.setVisibility(View.VISIBLE);
+                if (mAlOpenCtq != null && mAlOpenCtq.size() > 0) {
+                    mLlOpenCtq.setVisibility(View.VISIBLE);
+                    mLlNoData.setVisibility(View.GONE);
+                } else {
+                    mLlOpenCtq.setVisibility(View.GONE);
+                    mLlNoData.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

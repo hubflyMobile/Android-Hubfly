@@ -1,23 +1,77 @@
 package com.hubfly.ctq.Model;
 
+import java.util.ArrayList;
+
 /**
  * Created by Admin on 04-07-2017.
  */
 
 public class OpenCtqModel {
 
-    String Custname, Partname, jobCode, CreateBy, Creadetdate, CTQ, QAP;
+    String Custname;
+    String Partname;
+    String jobCode;
+    String HeatNo;
+    String QAPStatus;
+    String CTQStatus;
+    Integer PartID;
+    String CTQ;
+    String QAP;
 
-
-    public OpenCtqModel(String Custname, String Partname, String jobCode, String CreateBy, String Creadetdate, String CTQ, String QAP) {
-        this.Custname = Custname;
-        this.Partname = Partname;
-        this.jobCode = jobCode;
-        this.CreateBy = CreateBy;
-        this.Creadetdate = Creadetdate;
-        this.CTQ = CTQ;
-        this.QAP = QAP;
+    public ArrayList<ActivityModel> getmAlCtq() {
+        return mAlCtq;
     }
+
+    public void setmAlCtq(ArrayList<ActivityModel> mAlCtq) {
+        this.mAlCtq = mAlCtq;
+    }
+
+    ArrayList<ActivityModel> mAlCtq = new ArrayList<>();
+
+    public ArrayList<ActivityModel> getmAlQap() {
+        return mAlQap;
+    }
+
+    public void setmAlQap(ArrayList<ActivityModel> mAlQap) {
+        this.mAlQap = mAlQap;
+    }
+
+    ArrayList<ActivityModel> mAlQap = new ArrayList<>();
+
+    public String getQAPStatus() {
+        return QAPStatus;
+    }
+
+    public void setQAPStatus(String QAPStatus) {
+        this.QAPStatus = QAPStatus;
+    }
+
+    public String getCTQStatus() {
+        return CTQStatus;
+    }
+
+    public void setCTQStatus(String CTQStatus) {
+        this.CTQStatus = CTQStatus;
+    }
+
+
+
+    public Integer getPartID() {
+        return PartID;
+    }
+
+    public void setPartID(Integer partID) {
+        PartID = partID;
+    }
+
+    public String getHeatNo() {
+        return HeatNo;
+    }
+
+    public void setHeatNo(String heatNo) {
+        HeatNo = heatNo;
+    }
+
 
     public String getCustname() {
         return Custname;
@@ -43,22 +97,6 @@ public class OpenCtqModel {
         this.jobCode = jobCode;
     }
 
-    public String getCreateBy() {
-        return CreateBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        CreateBy = createBy;
-    }
-
-    public String getDeptName() {
-        return Creadetdate;
-    }
-
-    public void setDeptName(String deptName) {
-        Creadetdate = deptName;
-    }
-
     public String getCTQ() {
         return CTQ;
     }
@@ -74,4 +112,5 @@ public class OpenCtqModel {
     public void setQAP(String QAP) {
         this.QAP = QAP;
     }
+
 }

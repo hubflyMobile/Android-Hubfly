@@ -6,7 +6,20 @@ package com.hubfly.ctq.Model;
 
 public class PartModel {
     public int ID ;
-    public String PartNoHF,PartNameHF,CustomerIDHF ,SpecTypeHF;
+    public String PartNoHF;
+    public String PartNameHF;
+    public String CustomerIDHF;
+    public String SpecTypeHF;
+
+    public String getPartJobCodeHF() {
+        return PartJobCodeHF;
+    }
+
+    public void setPartJobCodeHF(String partJobCodeHF) {
+        PartJobCodeHF = partJobCodeHF;
+    }
+
+    public String PartJobCodeHF;
 
     public int getID() {
         return ID;

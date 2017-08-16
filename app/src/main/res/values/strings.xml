@@ -1,20 +1,21 @@
 <resources>
-    <string name="app_name">CTQ</string>
+    <string name="app_name">QAC</string>
     <string name="media">Select Media</string>
-
+    <string name="error">An unexpected error occurred</string>
+    <string name="comment">you might be add comment</string>
     <string name="country_prompt">Choose a country</string>
 
     <string-array name="cust">
-        <item>Please Select Customer</item>
+        <item>Select Customer</item>
         <item>VESTAS</item>
 
     </string-array>
     <string-array name="portno">
-        <item>Please Select Part No</item>
+        <item>Select Job Code</item>
         <item>VES S01</item>
     </string-array>
     <string-array name="dept">
-        <item>Please Select Machine</item>
+        <item>Select Machine</item>
         <item>Win 7 VM</item>
 
     </string-array>
@@ -27,9 +28,9 @@
     </string-array>
 
     <string name="customer_name">Customer Name</string>
-    <string name="part_name">Part No</string>
-    <string name="job_code">Heat No</string>
-    <string name="create_by">Created By</string>
+    <string name="part_name">Part Name</string>
+    <string name="job_code">Job Code</string>
+    <string name="heat_no">Heat Number</string>
     <string name="create_date">Created</string>
     <string name="ctq">CTQ</string>
     <string name="qap">QAP</string>

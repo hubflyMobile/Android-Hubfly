@@ -1,19 +1,29 @@
 package com.hubfly.ctq.adapter;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.hubfly.ctq.Model.CtoModel;
+import com.hubfly.ctq.Model.ImageModel;
 import com.hubfly.ctq.R;
 import com.hubfly.ctq.activity.NewCTQ;
+import com.hubfly.ctq.util.Config;
+import com.hubfly.ctq.util.HttpApi;
+import com.hubfly.ctq.util.OnResponseCallback;
 import com.hubfly.ctq.util.RippleView;
+import com.hubfly.ctq.util.Utility;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -28,24 +38,28 @@ public class QapAdapter extends RecyclerView.Adapter<QapAdapter.DataObjectHolder
     NewCTQ mNewCTQ;
     RadioButton lastCheckedRB;
     private static int lastCheckedPos = 0;
+    Utility mUtility;
+    private RecyclerView mRvCtq;
+    boolean isClicked = false;
 
-    public QapAdapter(Activity mActivity, ArrayList<CtoModel> mAlCto) {
+
+    public QapAdapter(Activity mActivity, ArrayList<CtoModel> mAlCto, RecyclerView view) {
         this.mActivity = mActivity;
         this.mAlCto = mAlCto;
+        this.mRvCtq = view;
         mNewCTQ = (NewCTQ) mActivity;
+        mUtility = new Utility(mActivity);
     }
 
     public class DataObjectHolder extends RecyclerView.ViewHolder {
         TextView mTxtTaskName;
         LinearLayout mLlRoot;
-        RippleView mRvTaskName;
         RadioButton mRbChecked;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
             mTxtTaskName = (TextView) itemView.findViewById(R.id.txt_task_name);
             mLlRoot = (LinearLayout) itemView.findViewById(R.id.ll_root_qap);
-            mRvTaskName = (RippleView) itemView.findViewById(R.id.rv_task_name);
             mRbChecked = (RadioButton) itemView.findViewById(R.id.rb_check);
         }
     }
@@ -63,88 +77,194 @@ public class QapAdapter extends RecyclerView.Adapter<QapAdapter.DataObjectHolder
         holder.mTxtTaskName.setText(mCtoModel.getTaskName());
 
         holder.mRbChecked.setChecked(mCtoModel.isChecked());
-        holder.mRbChecked.setTag(new Integer(position));
+        holder.mLlRoot.setTag("LL" + position);
+        holder.mRbChecked.setTag("RB" + position);
+        holder.mLlRoot.setBackgroundColor(Color.WHITE);
 
-        if (position == 0 && mAlCto.get(position).isChecked() && holder.mRbChecked.isChecked()) {
-            lastCheckedRB = holder.mRbChecked;
-            lastCheckedPos = 0;
+        if (mCtoModel.getVerifiedHF()) {
+            holder.mRbChecked.setChecked(true);
+            holder.mLlRoot.setBackgroundResource(R.drawable.ic_radio_selected_gray);
         }
 
-        holder.mRbChecked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    mNewCTQ.mLlQapValue.setVisibility(View.VISIBLE);
-                    mNewCTQ.mLlCtoValue.setVisibility(View.GONE);
-                } else {
-                    mNewCTQ.mLlCtoValue.setVisibility(View.VISIBLE);
-                    mNewCTQ.mLlQapValue.setVisibility(View.GONE);
-                }
-            }
-        });
+        if (mCtoModel.isChecked()) {
+            lastCheckedRB = holder.mRbChecked;
+            lastCheckedPos = position;
+            holder.mLlRoot.setBackgroundResource(R.drawable.ic_list_active);
+        }
 
-       /* holder.mRbChecked.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                RadioButton cb = (RadioButton) v;
-                int clickedPos = ((Integer) cb.getTag()).intValue();
-                if (cb.isChecked()) {
-                    if (lastCheckedRB != null) {
-                        lastCheckedRB.setChecked(false);
-                        mAlCto.get(lastCheckedPos).setChecked(false);
-                        mNewCTQ.mLlCtoValue.setVisibility(View.VISIBLE);
-                        mNewCTQ.mLlQapValue.setVisibility(View.GONE);
-                    }
-                    lastCheckedRB = cb;
-                    lastCheckedPos = clickedPos;
-                    mNewCTQ.mLlQapValue.setVisibility(View.VISIBLE);
-                    mNewCTQ.mLlCtoValue.setVisibility(View.GONE);
-                } else {
-                    lastCheckedRB = null;
-                }
-                mAlCto.get(clickedPos).setChecked(cb.isChecked());
-
-                *//*if (indexvalue == position) {
-                    holder.mLlRoot.setBackgroundColor(Color.parseColor("#567845"));
-                } else {
-                    holder.mLlRoot.setBackgroundColor(Color.parseColor("#000000"));
-                }*//*
-            }
-        });*/
-
+        holder.mRbChecked.setClickable(false);
 
         holder.mLlRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LinearLayout mLinearLayout = (LinearLayout) v;
-                int clickedPos = ((Integer) mLinearLayout.getTag()).intValue();
-                holder.mRbChecked.setChecked(true);
-                if (holder.mRbChecked.isChecked()) {
+                if (!isClicked) {
+                    isClicked = true;
                     if (lastCheckedRB != null) {
                         lastCheckedRB.setChecked(false);
-                        mAlCto.get(lastCheckedPos).setChecked(false);
-                        mNewCTQ.mLlQapValue.setVisibility(View.VISIBLE);
-                        mNewCTQ.mLlCtoValue.setVisibility(View.GONE);
+                        CtoModel model = mAlCto.get(lastCheckedPos);
+                        model.setChecked(false);
+                        notifyItemChanged(lastCheckedPos);
                     }
-                    lastCheckedRB = holder.mRbChecked;
+                    String tag = v.getTag().toString().replace("LL", "");
+                    int clickedPos = Integer.parseInt(tag);
+
+                    RadioButton mRbChecked = (RadioButton) getView("RB" + clickedPos);
+                    mRbChecked.setChecked(true);
+
+                    lastCheckedRB = mRbChecked;
                     lastCheckedPos = clickedPos;
-                    mNewCTQ.mLlCtoValue.setVisibility(View.VISIBLE);
-                    mNewCTQ.mLlQapValue.setVisibility(View.GONE);
-                } else {
-                    lastCheckedRB = null;
+
+                    CtoModel model = mAlCto.get(clickedPos);
+                    model.setChecked(true);
+                    notifyItemChanged(clickedPos);
+
+                    if (!model.getVerifiedHF()) {
+                        mNewCTQ.mEdtRemarksQap.setText("");
+                        mNewCTQ.AddImage(mAlCto.get(clickedPos).getImagePath(), "2", mAlCto.get(clickedPos).getImagePath(), true);
+                        hideshow(true);
+                    } else {
+                        if (mAlCto.get(clickedPos).getRemarks() != null && !mAlCto.get(clickedPos).getRemarks().equals("")&& !mAlCto.get(clickedPos).getRemarks().equals("null")) {
+                            mNewCTQ.mEdtRemarksQap.setText(mAlCto.get(clickedPos).getRemarks());
+                        } else {
+                            mNewCTQ.mEdtRemarksQap.setText("");
+                        }
+                        hideshow(false);
+                    }
+
+                    if (mCtoModel.getmAlImage().size() > 0) {
+                        mNewCTQ.mAlImageUri.clear();
+                        for (ImageModel imageModel : mCtoModel.getmAlImage()) {
+                            if (imageModel.getBaseImage().startsWith("https:")) {
+                                mNewCTQ.AddImage(imageModel.getBaseImage(), "1", imageModel.getBaseImage(), true);
+                            } else {
+                                mNewCTQ.AddImage(imageModel.getBaseImage(), "0", imageModel.getBaseImage(), true);
+                            }
+                        }
+                    }
+                    ChangeClickedStatus();
                 }
-                mAlCto.get(clickedPos).setChecked(holder.mRbChecked.isChecked());
             }
         });
 
 
+        mNewCTQ.mRvQapSubmit.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
+            @Override
+            public void onComplete(RippleView rippleView) {
+                if (!isClicked) {
+                    isClicked = true;
+                    if (mNewCTQ.mAlBase.size() > 0) {
+                        if (Utility.isInternetConnected(mActivity)) {
+                            GenerateNewCtq(mActivity, mAlCto.get(lastCheckedPos).getTaskName(), mAlCto.get(lastCheckedPos).getIndex(), mNewCTQ.mEdtRemarksQap.getText().toString(), mNewCTQ.mAlImageUri, lastCheckedPos);
+                        }
+                    } else {
+                        mUtility.showToast(mActivity, "Please select Images", "0");
+                    }
+                    ChangeClickedStatus();
+                }
+            }
+        });
 
+    }
+
+    private View getView(String tag) {
+        return mRvCtq.findViewWithTag(tag);
     }
 
     @Override
     public int getItemCount() {
         return mAlCto.size();
+    }
+
+    public void ChangeClickedStatus() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isClicked = false;
+            }
+        }, 300);
+    }
+
+    void GenerateNewCtq(final Activity mActivity, final String mStrTaskName, final Integer ID, final String remarks, final ArrayList<ImageModel> mAlImage, final Integer Position) {
+        try {
+            JSONObject mJsonInput = new JSONObject();
+            try {
+                mJsonInput.putOpt("ID", ID);
+                mJsonInput.putOpt("RemarksHF", remarks);
+                JSONArray mJsonArray = new JSONArray();
+                JSONObject mImgJson;
+                for (int i = 0; i < mNewCTQ.mAlBase.size(); i++) {
+                    mImgJson = new JSONObject();
+                    mImgJson.putOpt("Base64String", mNewCTQ.mAlBase.get(i).getBaseImage());
+                    mImgJson.putOpt("FileName", mNewCTQ.mAlBase.get(i).getFileName());
+                    mImgJson.putOpt("FileNew", true);
+                    mImgJson.putOpt("FileExists", false);
+                    mImgJson.putOpt("FileDelete", false);
+                    mImgJson.putOpt("FileTouched", true);
+                    mJsonArray.put(mImgJson);
+                }
+                mJsonInput.put("AttachmentFiles", mJsonArray);
+                JSONObject mJsonObject = mUtility.SendParams(mActivity, "0", null, ID);
+                mJsonObject.put("JsonInput", mJsonInput.toString());
+
+                HttpApi api = new HttpApi(mActivity, true, new OnResponseCallback() {
+                    @Override
+                    public void responseCallBack(Activity activity, String responseString) {
+                        if (responseString != null && responseString.equals("200")) {
+
+                            mUtility.showToast(mActivity, "QAP Updated Successfully", "0");
+
+                            String value = mNewCTQ.mTxtQapCount.getText().toString();
+                            String ctq[] = value.split("/");
+                            mNewCTQ.mTxtQapCount.setText(Integer.parseInt(ctq[0]) + 1 + "/" + ctq[1]);
+
+                            CtoModel mCtoModel = new CtoModel();
+                            mCtoModel.setTaskName(mStrTaskName);
+                            mCtoModel.setVerifiedHF(true);
+                            mCtoModel.setIndex(ID);
+                            mCtoModel.setRemarks(remarks);
+                            if (mNewCTQ.mAlImageUri.size() > 0) {
+                                ArrayList<ImageModel> mAlImage = new ArrayList<>();
+                                for (ImageModel imageModel : mNewCTQ.mAlImageUri) {
+                                    ImageModel mImageModel1 = new ImageModel();
+                                    mImageModel1.setBaseImage(imageModel.getBaseImage());
+                                    mImageModel1.setFileName(imageModel.getFileName());
+                                    mImageModel1.setServer(true);
+                                    mAlImage.add(mImageModel1);
+                                }
+                                mCtoModel.setmAlImage(mAlImage);
+                            }
+                            mCtoModel.setChecked(true);
+                            mNewCTQ.mAlQap.set(Position, mCtoModel);
+                            hideshow(false);
+                            notifyDataSetChanged();
+                        } else {
+                            mUtility.showToast(mActivity, "Server Error", "0");
+                        }
+                    }
+                }, Config.Baseurl + Config.UpdateHeatActivityForQAP, "POST", mJsonObject);
+                api.execute();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void hideshow(Boolean option) {
+        mNewCTQ.mLlCtoValue.setVisibility(View.GONE);
+        mNewCTQ.mLlQapValue.setVisibility(View.VISIBLE);
+        if (!option) {
+            mNewCTQ.mEdtRemarksQap.setClickable(false);
+            mNewCTQ.mEdtRemarksQap.setEnabled(false);
+            mNewCTQ.mRvChooseImage.setClickable(false);
+            mNewCTQ.mRvQapSubmit.setClickable(false);
+        } else {
+            mNewCTQ.mEdtRemarksQap.setClickable(true);
+            mNewCTQ.mEdtRemarksQap.setEnabled(true);
+            mNewCTQ.mRvChooseImage.setClickable(true);
+            mNewCTQ.mRvQapSubmit.setClickable(true);
+        }
     }
 
 }

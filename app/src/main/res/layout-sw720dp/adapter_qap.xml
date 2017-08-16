@@ -4,16 +4,21 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <com.hubfly.ctq.util.RippleView
+        android:id="@+id/rv_qap"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
     <LinearLayout
         android:id="@+id/ll_root_qap"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="97dp"
+            android:layout_height="77dp"
             android:layout_marginLeft="15dp"
             android:orientation="horizontal"
             android:weightSum="1">
@@ -42,19 +47,15 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <com.hubfly.ctq.util.RippleView
-                    android:id="@+id/rv_task_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
                     <com.hubfly.ctq.util.CustomTextView
                         android:id="@+id/txt_task_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
+                        android:maxLines="3"
+                        android:ellipsize="end"
                         android:textColor="@color/title"
-                        android:textSize="22sp" />
-                </com.hubfly.ctq.util.RippleView>
+                        android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -63,5 +64,5 @@
             android:layout_height="1dp"
             android:background="@color/list__border_bg"></LinearLayout>
     </LinearLayout>
-
+    </com.hubfly.ctq.util.RippleView>
 </LinearLayout>

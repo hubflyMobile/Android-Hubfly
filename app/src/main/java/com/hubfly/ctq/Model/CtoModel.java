@@ -1,5 +1,7 @@
 package com.hubfly.ctq.Model;
 
+import java.util.ArrayList;
+
 /**
  * Created by Admin on 03-07-2017.
  */
@@ -8,6 +10,101 @@ public class CtoModel {
 
     String taskName;
     String Comments;
+    String CtqValue;
+    String CTQValueHF;
+    String ImagePath;
+    ArrayList<ImageModel> mAlImage = new ArrayList<>();
+
+    public ArrayList<ImageModel> getmAlImage() {
+        return mAlImage;
+    }
+
+    public void setmAlImage(ArrayList<ImageModel> mAlImage) {
+        this.mAlImage = mAlImage;
+    }
+
+    public String getImagePath() {
+        return ImagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        ImagePath = imagePath;
+    }
+
+    public String getImageName() {
+        return ImageName;
+    }
+
+    public void setImageName(String imageName) {
+        ImageName = imageName;
+    }
+
+    String ImageName;
+
+    public String getCTQValueHF() {
+        return CTQValueHF;
+    }
+
+    public void setCTQValueHF(String CTQValueHF) {
+        this.CTQValueHF = CTQValueHF;
+    }
+
+    public String getRemarksHF() {
+        return RemarksHF;
+    }
+
+    public void setRemarksHF(String remarksHF) {
+        RemarksHF = remarksHF;
+    }
+
+    String RemarksHF;
+    Boolean VerifiedHF;
+
+    public Boolean getVerifiedHF() {
+        return VerifiedHF;
+    }
+
+    public void setVerifiedHF(Boolean verifiedHF) {
+        VerifiedHF = verifiedHF;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
+    }
+
+    String Status;
+
+    public String getCtqValue() {
+        return CtqValue;
+    }
+
+    public void setCtqValue(String ctqValue) {
+        CtqValue = ctqValue;
+    }
+
+    public String getRemarks() {
+        return Remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        Remarks = remarks;
+    }
+
+    String Remarks;
+
+    public String getSelectedId() {
+        return SelectedId;
+    }
+
+    public void setSelectedId(String selectedId) {
+        SelectedId = selectedId;
+    }
+
+    String SelectedId;
 
     public String getOption() {
         return Option;
@@ -21,6 +118,8 @@ public class CtoModel {
     Boolean isChecked;
     Integer id;
     Integer index;
+
+
 
     public Integer getIndex() {
         return index;
@@ -42,19 +141,6 @@ public class CtoModel {
         this.id = id;
     }
 
-
-    public CtoModel(String taskName,int index,String option) {
-        this.taskName = taskName;
-        this.index = index;
-        this.Option = option;
-    }
-
-    public CtoModel(String taskName, Boolean isChecked,int index,String option){
-        this.taskName = taskName;
-        this.isChecked = isChecked;
-        this.index = index;
-        this.Option = option;
-    }
 
     public String getTaskName() {
         return taskName;

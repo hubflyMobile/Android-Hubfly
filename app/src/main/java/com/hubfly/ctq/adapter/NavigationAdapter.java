@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hubfly.ctq.Model.NavigationModel;
@@ -25,6 +26,7 @@ public class NavigationAdapter extends ArrayAdapter<NavigationModel> {
     NavigationModel data[] = null;
     public TextView textViewName;
     public ImageView mImgSlide;
+    public LinearLayout mLlNavView;
 
     public NavigationAdapter(Context mContext, int layoutResourceId, NavigationModel[] data) {
 
@@ -44,9 +46,9 @@ public class NavigationAdapter extends ArrayAdapter<NavigationModel> {
 
         textViewName = (TextView) listItem.findViewById(R.id.txt_name);
         mImgSlide = (ImageView) listItem.findViewById(R.id.img_slide);
+        mLlNavView = (LinearLayout) listItem.findViewById(R.id.ll_nav_view);
 
         NavigationModel folder = data[position];
-
         textViewName.setText(folder.name);
         mImgSlide.setImageDrawable(ContextCompat.getDrawable(mContext, folder.getIcon()));
 

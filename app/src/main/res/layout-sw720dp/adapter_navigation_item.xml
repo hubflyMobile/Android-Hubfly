@@ -2,18 +2,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/ll_nav_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="22dp">
+        android:layout_height="70dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="68dp"
+            android:padding="15dp">
 
             <ImageView
                 android:id="@+id/img_slide"
@@ -37,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/img_header"
-        android:background="@color/title_sub_txt_name_color"></LinearLayout>
+        android:background="@color/list__border_bg"
+        android:visibility="gone"></LinearLayout>
 
 </LinearLayout>

@@ -73,11 +73,6 @@ public class SessionManager {
         return user;
     }
 
-    public void setDeviceId(String deviceId) {
-        mEditor.putString("device_id", deviceId);
-        mEditor.commit();
-    }
-
     public HashMap<String, String> getDeviceId() {
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("device_id", mSharedPreferences.getString("device_id", null));
@@ -90,38 +85,6 @@ public class SessionManager {
     // Get Login State
     public boolean isLoggedIn() {
         return mSharedPreferences.getBoolean(IS_LOGIN, false);
-    }
-
-    public void setDigest(String userId) {
-        //editor.putString("USER_ID", userId);
-        mEditor.putString("Digest", userId);
-        mEditor.commit();
-    }
-
-    public HashMap<String, String> getDigest() {
-        HashMap<String, String> map = new HashMap<String, String>();
-        map.put("Digest", mSharedPreferences.getString("Digest", null));
-        return map;
-    }
-
-    public void setSharePointId(String sharePointId) {
-        mEditor.putString("share_point_id", sharePointId);
-        mEditor.commit();
-    }
-
-    public HashMap<String, String> getSharePointId() {
-        HashMap<String, String> map = new HashMap<String, String>();
-        map.put("share_point_id", mSharedPreferences.getString("share_point_id", null));
-        return map;
-    }
-
-    public void setPostion(Integer postion) {
-        mEditor.putInt("position", postion);
-        mEditor.commit();
-    }
-
-    public int getPosition() {
-        return mSharedPreferences.getInt("position",0);
     }
 
     public void ClearUser() {
@@ -139,14 +102,26 @@ public class SessionManager {
         mEditor.commit();
     }
 
-
-    public void setPermission() {
-        mEditor.putBoolean("Status", true);
+    public void setProfileDetails(String response) {
+        mEditor.putString("response", response);
         mEditor.commit();
     }
 
-    public Boolean getPermission() {
-        return mSharedPreferences.getBoolean("Status", false);
+    public HashMap<String, String> getProfileDetails() {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("response", mSharedPreferences.getString("response", null));
+        return map;
+    }
+
+    public void setProfilePicture(String response) {
+        mEditor.putString("profile_picture_response", response);
+        mEditor.commit();
+    }
+
+    public HashMap<String, String> getProfilePicture() {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("profile_picture_response", mSharedPreferences.getString("profile_picture_response", null));
+        return map;
     }
 
 }

@@ -210,9 +210,7 @@ public class QapAdapter extends RecyclerView.Adapter<QapAdapter.DataObjectHolder
                     @Override
                     public void responseCallBack(Activity activity, String responseString) {
                         if (responseString != null && responseString.equals("200")) {
-
                             mUtility.showToast(mActivity, "QAP Updated Successfully", "0");
-
                             String value = mNewCTQ.mTxtQapCount.getText().toString();
                             String ctq[] = value.split("/");
                             mNewCTQ.mTxtQapCount.setText(Integer.parseInt(ctq[0]) + 1 + "/" + ctq[1]);

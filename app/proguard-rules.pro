@@ -27,3 +27,21 @@
 -keep class * {
     public private *;
 }
+-dontwarn org.apache.commons.logging.**
+
+ -ignorewarnings
+    -dontwarn org.apache.commons.**
+    -keep class org.apache.http.** { *; }
+    -dontwarn org.apache.http.**
+    -keepattributes SourceFile,LineNumberTable
+    -dontwarn java.nio.file.Files
+    -dontwarn java.nio.file.Path
+    -dontwarn java.nio.file.OpenOption
+    -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+    -keepattributes Signature
+    -keep class sun.misc.Unsafe { *; }
+    -dontwarn android.support.design.**
+    -keep class android.support.design.** { *; }
+    -keep interface android.support.design.** { *; }
+    -keep public class android.support.design.R$* { *; }
+

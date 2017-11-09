@@ -58,14 +58,16 @@ public class ApiClient {
 
                 HttpEntity httpEntity = httpResponse.getEntity();
                 postStatusCode = httpResponse.getStatusLine().getStatusCode();
-                mInputStream = httpEntity.getContent();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(mInputStream, "iso-8859-1"), 8);
-                mStringBuilder = new StringBuilder();
 
-                while ((line = reader.readLine()) != null) {
-                    mStringBuilder.append(line + "\n");
+                if (postStatusCode == 200) {
+                    mInputStream = httpEntity.getContent();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(mInputStream, "iso-8859-1"), 8);
+                    mStringBuilder = new StringBuilder();
+                    while ((line = reader.readLine()) != null) {
+                        mStringBuilder.append(line + "\n");
+                    }
+                    Utility.logging("Sb String" + mStringBuilder.toString());
                 }
-                Utility.logging("Sb String" + mStringBuilder.toString());
                 mInputStream.close();
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
@@ -78,7 +80,6 @@ public class ApiClient {
             }
         }
         return mStringBuilder.toString() + postStatusCode;
-
     }
 
 

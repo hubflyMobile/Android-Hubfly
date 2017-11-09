@@ -21,12 +21,12 @@ import com.hubfly.ctq.util.Utility;
 
 public class Login extends Activity {
 
-    SessionManager mSessionManager;
     String RTFA_Value = "";
     String FedAuth_Value = "";
     ProgressDialog progressDialog;
     WebView mWebView;
     Boolean LoadUrl = false;
+    SessionManager mSessionManager;
 
 
     @Override
@@ -34,6 +34,7 @@ public class Login extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Initialization();
+
         if (Utility.isInternetConnected(Login.this)) {
             InitializationViews();
         }

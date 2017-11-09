@@ -11,8 +11,8 @@ import java.util.ArrayList;
  */
 public class Config {
 
-    public static String Baseurl = "https://stgHFFoundryQAAPI.azurewebsites.net/api/";//Dev
-//    public static String Baseurl = "https://prdHFFoundryQAAPI.azurewebsites.net/api/";//Live
+//    public static String Baseurl = "https://stgHFFoundryQAAPI.azurewebsites.net/api/";//Dev
+    public static String Baseurl = "https://prdHFFoundryQAAPI.azurewebsites.net/api/";//Live
 //    public static String LoginUrl = "https://hubflysoft.sharepoint.com/sites/dev/";
 //    public static String ImageUrl = "https://hubflysoft.sharepoint.com";
     public static String ImageUrl = "https://jsautocast.sharepoint.com";

@@ -135,14 +135,12 @@ public class Utility {
         return status;
     }
 
-    public static ProgressDialog showLoading(Activity context){
+    public static ProgressDialog showLoading(Activity context) {
         ProgressDialog pDialog = null;
-        if (pDialog!=null) {
-            pDialog = new ProgressDialog(context);
-            pDialog.setMessage("Please wait...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-        }
+        pDialog = new ProgressDialog(context);
+        pDialog.setMessage("Please wait...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
         pDialog.show();
         return pDialog;
     }

@@ -34,27 +34,7 @@ public class DummyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dummy);
         Initialization();
-
-        if (mSessionManager.getProfileDetails() != null) {
-            if (mSessionManager.getProfileDetails().get("response") != null && !mSessionManager.getProfileDetails().get("response").equals("")) {
-                ParseProfileData(mSessionManager.getProfileDetails().get("response"));
-            } else {
-                getUserProfile("1");
-            }
-        } else {
-            getUserProfile("1");
-        }
-
-        if (mSessionManager.getProfilePicture() != null) {
-            if (mSessionManager.getProfilePicture().get("profile_picture_response") != null && !mSessionManager.getProfilePicture().get("profile_picture_response").equals("")) {
-                ParseProfilePicture(mSessionManager.getProfilePicture().get("profile_picture_response"));
-            } else {
-
-            }
-        } else {
-            getUserProfile("5");
-        }
-
+        getUserProfile("1");
     }
 
 
@@ -81,7 +61,7 @@ public class DummyActivity extends Activity {
                         }
                     }, Config.Baseurl + Config.GetUserDetails, "POST", mJsonObject);
                 } else {
-                    api = new HttpApi(DummyActivity.this, true, mUserProfilePictureCallBack, Config.ImageUrl + Config.UserProfile, "GET", mJsonObject);
+                    api = new HttpApi(DummyActivity.this,  true, mUserProfilePictureCallBack, Config.ImageUrl + Config.UserProfile, "GET", mJsonObject);
                 }
                 api.execute();
             }
@@ -101,6 +81,10 @@ public class DummyActivity extends Activity {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+            }finally {
+                Intent mIntent = new Intent(DummyActivity.this, HomePage.class);
+                startActivity(mIntent);
+                finish();
             }
         }
     };
@@ -172,10 +156,6 @@ public class DummyActivity extends Activity {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-        } finally {
-            Intent mIntent = new Intent(DummyActivity.this, HomePage.class);
-            startActivity(mIntent);
-            finish();
         }
     }
 
@@ -207,4 +187,5 @@ public class DummyActivity extends Activity {
             }
         }
     }
+
 }

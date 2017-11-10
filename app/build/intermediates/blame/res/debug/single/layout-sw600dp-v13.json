@@ -1,0 +1,82 @@
+[
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\adapter_qap.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\adapter_qap.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\adapter_category.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\adapter_category.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\activity_ctq_list.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\activity_ctq_list.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\activity_splash.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\activity_splash.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\design_layout_snackbar.xml",
+        "source": "C:\\Users\\HariMurugesan\\.android\\build-cache\\b1fb5c02d2710b67efbc5658feaa14617c0a3eae\\output\\res\\layout-sw600dp-v13\\design_layout_snackbar.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\activity_new_ctq.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\activity_new_ctq.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\app_spinner_item.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\app_spinner_item.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\activity_dummy.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\activity_dummy.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\adapter_navigation_item.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\adapter_navigation_item.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\activity_login.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\activity_login.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\app_popup_password_changed.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\app_popup_password_changed.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\adapter_cto_list.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\adapter_cto_list.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\activity_home_page.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\activity_home_page.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\app_spinner_dropdown_item.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\app_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\app_common_navigation_header.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\app_common_navigation_header.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\gridview_layout.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\gridview_layout.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\fragement_new_ctq.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\fragement_new_ctq.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\adapter_ctq.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\adapter_ctq.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\app_common_toolbar.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\app_common_toolbar.xml"
+    },
+    {
+        "merged": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\fragement_open_ctq.xml",
+        "source": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\src\\main\\res\\layout-sw600dp\\fragement_open_ctq.xml"
+    }
+]

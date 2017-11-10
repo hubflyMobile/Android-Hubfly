@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\c6b8ceec047d64ee38ffc65c8a1ee23612010e1b\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5d9b955898831a1c7574c76ae28d434b8c7c72e1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\5d0fc9bbb72739882149014df4d16824427943d5\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2d385e4f611907974abd6daf43ddae08129f0e9f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\d18cc1d82b1e49dc5cfbf37a6aaa1fee411f1090\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4f36da21c428733003f072aa96d3d0627eaf50cf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="72a4e1548767fe705820c113f77b66a21a4b85eb">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_ec645764a5f198c4c687bc506b64c2a463eff3d7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b5a46aea87dfe14e37ebe3c06e506dd43a06dafb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\6ed588cb570f6e27fc16839f7cd4bfcd9093eaf6\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b21013cba0e28e97ee9646c73a2a8eeec6502581\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\fd3a42fec7dd265421cb770b0dd15fb0ee3c00ff\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5ba2e5400201bfaa5000ca03369912fe32fcdfe2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\glide-3.7.0_608e26fb7355a2316c97fcc3a9e4cb02a0fbbb13\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\f2c46707ad37d17e60c878b713139e058fc407dc\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3aef2ad4ad45cffd2f7026437c873e8e00c4f1eb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Hubfly\Android\Hubfly\CTQ-V6\app\libs\gson-2.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\2\gson-2.3.1_c2c69f8eef0799bfd73b7ce318513bc511d0f522\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\9706d57b8cfc2df199f41e3aeb3d8281b535b4d4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f42d6d652198eeb144a08d0a66a38b8ca079d5f0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Hubfly\Android\Hubfly\CTQ-V6\app\libs\httpcore-4.3.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="31fbbff1ddbf98f3aa7377c94d33b0447c646b6e">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\2\httpcore-4.3.2_4fed0ea2acdf9a0098ff15cf6e302064f4e1b50a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\c9c249d7d8cc3fc70bfa45a3d6c3041d2ba32715\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6666dd525c3da197e7d07f4f23ef5fc7881a697b">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6d0bae25068aa850801fa7dca8075e25cc511d80\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\9c4b9c341e74304bb4ab8216fcc3ddc357df8e50\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_165bc5334d26d5c0dcdde4b98c223df908049ce6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\99d8019b219a481bc894095131ccc7e3c60c2b7c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_209c5d5c3d5631c1593762c938161f34a00baed5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\b1fb5c02d2710b67efbc5658feaa14617c0a3eae\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="23eb0d2998a782213b56168cbf23a0688b9111d9">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9ee29d3d1251e5fddeef148f68e3a1e1374458e8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.gradle\caches\modules-2\files-2.1\ch.acra\acra\4.5.0\44a5eb946e0d83eed4a0128d877ca1fd8168b83a\acra-4.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44a5eb946e0d83eed4a0128d877ca1fd8168b83a">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\acra-4.5.0_8e2cace161ff0e24d10ba132d8b262bc3c75f981\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Hubfly\Android\Hubfly\CTQ-V6\app\libs\httpmime-4.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5b0002c5fb66867ca919be0fbd86de1cfaf76da7">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\2\httpmime-4.3_e456ef532d050936f090075585ed866b3b8d0022\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\c0f475e93c3b9978db42cf1c21c02b3af98b766d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bc0eef062e7fedcb29aef253562066fad4dce049\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Android Sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_c3cfb9588fae998f0952b081c1315a07898c7f0c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\6f513b6433e1420a2578d9714ee0e17a58e173d7\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5a8e467675f27e27e77f9a3c69031eea56c35248\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Android Sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.3.1_d6be2c29679e299b8af48015b1536767d9035860\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\HariMurugesan\.android\build-cache\aa588d51790d4a2610e2964b9a0fd4da2f05d1e1\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5472f3ea5c7f40baf1dd649dde7c1e3929a5be4e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Hubfly\Android\Hubfly\CTQ-V6\app\libs\httpclient-4.2.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6a91a27c5c07e9da44eeddbc4206e349735b26f4">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\2\httpclient-4.2.3_84b764879e2dfe11bc3f681a8ed99f3301ef9c5e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Hubfly\Android\Hubfly\CTQ-V6\app\libs\java-json.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="edad9c5de6fb8df07c535a47045956026011ffa3">
+        <dex dex="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\transforms\dex\debug\folders\1000\2\java-json_f7fa5922df9d5bc6cfb9c8b5263fb9cd420b7aab\classes.dex" />
+    </item>
+
+</items>

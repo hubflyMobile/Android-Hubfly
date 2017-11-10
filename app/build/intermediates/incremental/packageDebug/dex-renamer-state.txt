@@ -1,0 +1,7 @@
+#Fri Nov 10 13:08:28 IST 2017
+base.0=E\:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_ec645764a5f198c4c687bc506b64c2a463eff3d7
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=E\:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_b5a46aea87dfe14e37ebe3c06e506dd43a06dafb\\classes.dex
+base.1=E\:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_b5a46aea87dfe14e37ebe3c06e506dd43a06dafb
+file.0=E\:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_ec645764a5f198c4c687bc506b64c2a463eff3d7\\classes.dex

@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_root_qap_ctq"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/list__border_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_root_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_mainfeed_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/title_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <com.hubfly.ctq.util.RippleView
+                android:id="@+id/rv_back"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="39dp"
+                    android:layout_height="39dp"
+                    android:layout_marginLeft="18dp"
+                    android:src="@drawable/ic_home_back_arrow" />
+            </com.hubfly.ctq.util.RippleView>
+
+            <com.hubfly.ctq.util.CustomTextView
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:maxLines="2"
+                android:singleLine="false"
+                android:text="Quality Assurance Details"
+                android:textAppearance="?android:attr/textAppearance"
+                android:textColor="@color/white"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/img_profile"
+                android:layout_width="39dp"
+                android:layout_height="39dp"
+                android:layout_marginLeft="18dp"
+                android:src="@drawable/ic_user_profile" />
+
+            <com.hubfly.ctq.util.CustomTextView
+                android:id="@+id/txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight=".2"
+                android:gravity="left"
+                android:maxLines="2"
+                android:singleLine="false"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearance"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="7dp"
+        android:background="@color/title_sub_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="7dp">
+
+                <com.hubfly.ctq.util.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Customer Name : "
+                    android:textColor="@color/title_sub_txt_name_color"
+                    android:textSize="18sp" />
+
+                <com.hubfly.ctq.util.CustomTextView
+                    android:id="@+id/txt_customer_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/title_sub_txt_value_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/title_sub_txt_name_color"></LinearLayout>
+
+                <com.hubfly.ctq.util.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:gravity="center"
+                    android:text="Part Name  : "
+                    android:textColor="@color/title_sub_txt_name_color"
+                    android:textSize="18sp" />
+
+                <com.hubfly.ctq.util.CustomTextView
+                    android:id="@+id/txt_part_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="   "
+                    android:textColor="@color/title_sub_txt_value_color"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/title_sub_txt_name_color"></LinearLayout>
+                <com.hubfly.ctq.util.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:gravity="center"
+                    android:text="Job Code  : "
+                    android:textColor="@color/title_sub_txt_name_color"
+                    android:textSize="18sp" />
+
+                <com.hubfly.ctq.util.CustomTextView
+                    android:id="@+id/txt_job_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="   "
+                    android:textColor="@color/title_sub_txt_value_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/list__border_bg"></LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/list__border_bg"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.hubfly.ctq.util.RippleView
+                        android:id="@+id/rv_ctq_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp">
+
+                        <LinearLayout
+                            android:id="@+id/ll_ctq_click"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:background="@drawable/ic_tab_active"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <com.hubfly.ctq.util.CustomTextView
+                                android:id="@+id/txt_ctq_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="32dp"
+                                android:layout_weight=".7"
+                                android:gravity="start"
+                                android:text="CTQ "
+                                android:textColor="@color/list_active_tab"
+                                android:textSize="18sp" />
+
+                            <com.hubfly.ctq.util.CustomTextView
+                                android:id="@+id/txt_ctq_count"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="25dp"
+                                android:layout_weight=".3"
+                                android:gravity="center"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </com.hubfly.ctq.util.RippleView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/list__border_bg"></LinearLayout>
+
+                    <com.hubfly.ctq.util.RippleView
+                        android:id="@+id/rv_qap_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp">
+
+                        <LinearLayout
+                            android:id="@+id/ll_qap_click"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <com.hubfly.ctq.util.CustomTextView
+                                android:id="@+id/txt_qap_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="32dp"
+                                android:layout_weight=".7"
+                                android:gravity="start"
+                                android:text="QAP "
+                                android:textColor="@color/list_normal_tab"
+                                android:textSize="18sp" />
+
+                            <com.hubfly.ctq.util.CustomTextView
+                                android:id="@+id/txt_qap_count"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_weight=".3"
+                                android:gravity="center"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+                    </com.hubfly.ctq.util.RippleView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/list__border_bg"></LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_weight="1.7"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_ctq"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_open_ctq_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_qap"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/ll_open_qap_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ctq_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_weight="1.3"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_cto_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="11dp"
+                            android:orientation="vertical"
+                            android:weightSum="1">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <com.hubfly.ctq.util.CustomTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/edt_margin_top"
+                                    android:layout_marginLeft="3dp"
+                                    android:text="CTQ Value"
+                                    android:textColor="@color/title_sub_txt_name_color"
+                                    android:textSize="@dimen/txt_medium" />
+
+                                <EditText
+                                    android:id="@+id/edt_cto_no"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/ic_edt_rectangle"
+                                    android:inputType="numberDecimal"
+                                    android:padding="7dp"
+                                    android:text=""
+                                    android:textColor="@color/title"
+                                    android:textCursorDrawable="@drawable/black_cursor"
+                                    android:textSize="19sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <com.hubfly.ctq.util.CustomTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/edt_margin_top"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="@dimen/edt_margin_top"
+                                    android:text="Remarks"
+                                    android:textColor="@color/title_sub_txt_name_color"
+                                    android:textSize="19sp" />
+
+                                <EditText
+                                    android:id="@+id/edt_remarks"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="100dp"
+                                    android:background="@drawable/ic_edt_rectangle"
+                                    android:gravity="start"
+                                    android:inputType="text"
+                                    android:padding="7dp"
+                                    android:text=""
+                                    android:textColor="@color/title"
+                                    android:textCursorDrawable="@drawable/black_cursor"
+                                    android:textSize="19sp" />
+                            </LinearLayout>
+
+                            <com.hubfly.ctq.util.RippleView
+                                android:id="@+id/rv_ctq_submit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginTop="13dp"
+                                android:background="@color/list_active_tab"
+                                android:gravity="center"
+                                android:padding="7dp">
+
+                                <com.hubfly.ctq.util.CustomTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:ems="5"
+                                    android:gravity="center"
+                                    android:text="Submit"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/txt_medium"
+                                    android:textStyle="bold" />
+
+                            </com.hubfly.ctq.util.RippleView>
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_qap_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
+
+                            <com.hubfly.ctq.util.RippleView
+                                android:id="@+id/rv_choose"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="15dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/ic_edt_rectangle"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+
+                                    <ImageView
+                                        android:layout_width="25dp"
+                                        android:layout_height="25dp"
+                                        android:src="@drawable/ic_qac_image" />
+
+                                    <com.hubfly.ctq.util.CustomTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="7dp"
+                                        android:gravity="center"
+                                        android:text="Take Photo"
+                                        android:textColor="@color/title_sub_txt_value_color"
+                                        android:textSize="@dimen/txt_medium" />
+                                </LinearLayout>
+                            </com.hubfly.ctq.util.RippleView>
+
+                            <com.hubfly.ctq.util.CustomTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:gravity="center"
+                                android:text="Selected Images"
+                                android:textColor="@color/title_sub_txt_value_color"
+                                android:textSize="19sp" />
+
+                            <GridView
+                                android:id="@+id/gv_images"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:columnWidth="90dp"
+                                android:gravity="center"
+                                android:horizontalSpacing="10dp"
+                                android:numColumns="3"
+                                android:stretchMode="columnWidth"
+                                android:verticalSpacing="10dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <com.hubfly.ctq.util.CustomTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/edt_margin_top"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="@dimen/edt_margin_top"
+                                    android:text="Remarks"
+                                    android:textColor="@color/title_sub_txt_name_color"
+                                    android:textSize="19sp" />
+
+                                <EditText
+                                    android:id="@+id/edt_qap_remarks"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/ic_edt_rectangle"
+                                    android:gravity="start"
+                                    android:inputType="text"
+                                    android:padding="7dp"
+                                    android:text=""
+                                    android:textColor="@color/title"
+                                    android:textCursorDrawable="@drawable/black_cursor"
+                                    android:textSize="19sp" />
+                            </LinearLayout>
+
+                            <com.hubfly.ctq.util.RippleView
+                                android:id="@+id/rv_qap_submit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginTop="13dp"
+                                android:background="@color/list_active_tab"
+                                android:padding="7dp"
+                                android:visibility="visible">
+
+                                <com.hubfly.ctq.util.CustomTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ems="5"
+                                    android:gravity="center"
+                                    android:text="Submit"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/txt_medium"
+                                    android:textStyle="bold" />
+                            </com.hubfly.ctq.util.RippleView>
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -12,8 +12,35 @@ public class ActivityModel  implements Serializable {
     int ID;
     int JobIDHF;
     int PartIDHF;
+
+    public int getQACJobIDHF() {
+        return QACJobIDHF;
+    }
+
+    public void setQACJobIDHF(int QACJobIDHF) {
+        this.QACJobIDHF = QACJobIDHF;
+    }
+
+    int QACJobIDHF;
     int ActivityIDHF;
-    int CTQMinValueHF;
+     double CTQMinValueHF,CTQMaxValueHF;
+
+    public double getCTQMinValueHF() {
+        return CTQMinValueHF;
+    }
+
+    public void setCTQMinValueHF(double CTQMinValueHF) {
+        this.CTQMinValueHF = CTQMinValueHF;
+    }
+
+    public double getCTQMaxValueHF() {
+        return CTQMaxValueHF;
+    }
+
+    public void setCTQMaxValueHF(double CTQMaxValueHF) {
+        this.CTQMaxValueHF = CTQMaxValueHF;
+    }
+
     ArrayList<ImageModel> mAlImage = new ArrayList<>();
 
     public ArrayList<ImageModel> getmAlImage() {
@@ -24,23 +51,7 @@ public class ActivityModel  implements Serializable {
         this.mAlImage = mAlImage;
     }
 
-    public int getCTQMinValueHF() {
-        return CTQMinValueHF;
-    }
 
-    public void setCTQMinValueHF(int CTQMinValueHF) {
-        this.CTQMinValueHF = CTQMinValueHF;
-    }
-
-    public int getCTQMaxValueHF() {
-        return CTQMaxValueHF;
-    }
-
-    public void setCTQMaxValueHF(int CTQMaxValueHF) {
-        this.CTQMaxValueHF = CTQMaxValueHF;
-    }
-
-    int CTQMaxValueHF;
     String HeatNoHF;
     String RemarksHF;
     String ActivityNameHF;

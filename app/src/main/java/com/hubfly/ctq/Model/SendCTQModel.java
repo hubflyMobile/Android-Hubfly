@@ -6,8 +6,37 @@ package com.hubfly.ctq.Model;
 
 public class SendCTQModel {
     Integer ID;
+
+    public Integer getQACJobIDHF() {
+        return QACJobIDHF;
+    }
+
+    public void setQACJobIDHF(Integer QACJobIDHF) {
+        this.QACJobIDHF = QACJobIDHF;
+    }
+
+    Integer QACJobIDHF;
     String CTQValueHF,RemarksHF;
     Boolean VerifiedHF;
+    double CTQMinValueHF;
+
+    public double getCTQMinValueHF() {
+        return CTQMinValueHF;
+    }
+
+    public void setCTQMinValueHF(double CTQMinValueHF) {
+        this.CTQMinValueHF = CTQMinValueHF;
+    }
+
+    public double getCTQMaxValueHF() {
+        return CTQMaxValueHF;
+    }
+
+    public void setCTQMaxValueHF(double CTQMaxValueHF) {
+        this.CTQMaxValueHF = CTQMaxValueHF;
+    }
+
+    double CTQMaxValueHF;
 
     public Integer getID() {
         return ID;

@@ -21,6 +21,7 @@ import com.hubfly.ctq.Model.OpenCtqModel;
 import com.hubfly.ctq.R;
 import com.hubfly.ctq.adapter.CtoListAdapter;
 import com.hubfly.ctq.util.Config;
+import com.hubfly.ctq.util.GlideUtil;
 import com.hubfly.ctq.util.HttpApi;
 import com.hubfly.ctq.util.OnResponseCallback;
 import com.hubfly.ctq.util.RippleView;
@@ -47,7 +48,9 @@ public class CloseCtQ extends Fragment {
     Utility mUtility;
     LinearLayout mLlOpenCtq, mLlNoData, mLlRootList;
     EditText mEdtSearch;
-    ImageView mImgClear;
+    ImageView mImgClear,mImgProfile;
+    GlideUtil mGlideUtil;
+    TextView mTxtUserName;
 
     @Nullable
     @Override
@@ -65,6 +68,7 @@ public class CloseCtQ extends Fragment {
     void Initializaion() {
         mAlOpenCtq = new ArrayList<>();
         mUtility = new Utility(getActivity());
+        mGlideUtil = new GlideUtil(getActivity());
     }
 
     void InitiizationViews(View rootView) {
@@ -81,6 +85,16 @@ public class CloseCtQ extends Fragment {
 
         mLlRootList.setVisibility(View.GONE);
         mUtility.HideShowKeyboard(getActivity(), mEdtSearch, "0");
+
+        mImgProfile = (ImageView)rootView. findViewById(R.id.img_profile);
+
+        if (Config.PictureUrl != null && !Config.PictureUrl.equals("")) {
+            mGlideUtil.LoadImages(mImgProfile, 1, Config.PictureUrl, true, 1.5f, Config.PictureUrl);
+        }
+
+        mTxtUserName = (TextView)rootView.findViewById(R.id.txt_name);
+        mTxtUserName.setText(Config.UserName);
+
     }
 
 

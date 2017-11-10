@@ -15,7 +15,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="75dp"
             android:orientation="horizontal"
             android:weightSum="7">
 
@@ -139,13 +139,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="4dp"
+            android:layout_margin="6dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="4dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="6dp"
                 android:background="@drawable/ic_edt_search_rectangle"
                 android:orientation="horizontal"
                 android:weightSum="1">
@@ -154,14 +154,14 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_weight=".02"
                     android:src="@drawable/ic_open_search" />
 
                 <EditText
                     android:id="@+id/edt_search"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_weight=".94"
                     android:background="@color/white"
@@ -177,7 +177,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="17dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_weight=".02"
                     android:src="@drawable/ic_open_clear" />
             </LinearLayout>

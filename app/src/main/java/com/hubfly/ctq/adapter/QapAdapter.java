@@ -154,7 +154,7 @@ public class QapAdapter extends RecyclerView.Adapter<QapAdapter.DataObjectHolder
                     isClicked = true;
                     if (mNewCTQ.mAlBase.size() > 0) {
                         if (Utility.isInternetConnected(mActivity)) {
-                            GenerateNewCtq(mActivity, mAlCto.get(lastCheckedPos).getTaskName(), mAlCto.get(lastCheckedPos).getIndex(), mNewCTQ.mEdtRemarksQap.getText().toString(), mNewCTQ.mAlImageUri, lastCheckedPos);
+                            GenerateNewCtq(mActivity, mAlCto.get(lastCheckedPos).getTaskName(), mAlCto.get(lastCheckedPos).getIndex(), mNewCTQ.mEdtRemarksQap.getText().toString(), mNewCTQ.mAlImageUri, lastCheckedPos,mAlCto.get(lastCheckedPos).getCTQMinValueHF(),mAlCto.get(lastCheckedPos).getCTQMaxValueHF(),mAlCto.get(lastCheckedPos).getQACJobIDHF());
                         }
                     } else {
                         mUtility.showToast(mActivity, "Please select Images", "0");
@@ -184,12 +184,15 @@ public class QapAdapter extends RecyclerView.Adapter<QapAdapter.DataObjectHolder
         }, 300);
     }
 
-    void GenerateNewCtq(final Activity mActivity, final String mStrTaskName, final Integer ID, final String remarks, final ArrayList<ImageModel> mAlImage, final Integer Position) {
+    void GenerateNewCtq(final Activity mActivity, final String mStrTaskName, final Integer ID, final String remarks, final ArrayList<ImageModel> mAlImage, final Integer Position,final double minValue,final double maxValue,final int QacJobId) {
         try {
             JSONObject mJsonInput = new JSONObject();
             try {
                 mJsonInput.putOpt("ID", ID);
                 mJsonInput.putOpt("RemarksHF", remarks);
+                mJsonInput.putOpt("CTQMaxValueHF",maxValue);
+                mJsonInput.putOpt("CTQMinValueHF",minValue);
+                mJsonInput.putOpt("QACJobIDHF",QacJobId);
                 JSONArray mJsonArray = new JSONArray();
                 JSONObject mImgJson;
                 for (int i = 0; i < mNewCTQ.mAlBase.size(); i++) {
@@ -220,6 +223,8 @@ public class QapAdapter extends RecyclerView.Adapter<QapAdapter.DataObjectHolder
                             mCtoModel.setVerifiedHF(true);
                             mCtoModel.setIndex(ID);
                             mCtoModel.setRemarks(remarks);
+                            mCtoModel.setCTQMaxValueHF(maxValue);
+                            mCtoModel.setCTQMinValueHF(minValue);
                             if (mNewCTQ.mAlImageUri.size() > 0) {
                                 ArrayList<ImageModel> mAlImage = new ArrayList<>();
                                 for (ImageModel imageModel : mNewCTQ.mAlImageUri) {

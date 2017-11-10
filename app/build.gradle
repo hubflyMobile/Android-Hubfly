@@ -6,7 +6,7 @@ android {
         config {
             keyAlias 'hubfly'
             keyPassword 'hubfly123$'
-            storeFile file('F:/Hari/Project/JS AutoCast/CTQ/jsautocast.jks')
+            storeFile file('E:/keystore/jsautocast.jks')
             storePassword 'hubfly123$'
         }
     }

@@ -33,4 +33,14 @@ public class JobWiseModel {
 
     int PartIDHF;
     String HeatNumberHF;
+
+    public String getFurnaceNameHF() {
+        return FurnaceNameHF;
+    }
+
+    public void setFurnaceNameHF(String furnaceNameHF) {
+        FurnaceNameHF = furnaceNameHF;
+    }
+
+    String FurnaceNameHF;
 }

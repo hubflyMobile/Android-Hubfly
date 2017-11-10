@@ -14,6 +14,35 @@ public class CtoModel {
     String CTQValueHF;
     String ImagePath;
     ArrayList<ImageModel> mAlImage = new ArrayList<>();
+    double CTQMinValueHF;
+
+    public int getQACJobIDHF() {
+        return QACJobIDHF;
+    }
+
+    public void setQACJobIDHF(int QACJobIDHF) {
+        this.QACJobIDHF = QACJobIDHF;
+    }
+
+    int QACJobIDHF;
+
+    public double getCTQMinValueHF() {
+        return CTQMinValueHF;
+    }
+
+    public void setCTQMinValueHF(double CTQMinValueHF) {
+        this.CTQMinValueHF = CTQMinValueHF;
+    }
+
+    public double getCTQMaxValueHF() {
+        return CTQMaxValueHF;
+    }
+
+    public void setCTQMaxValueHF(double CTQMaxValueHF) {
+        this.CTQMaxValueHF = CTQMaxValueHF;
+    }
+
+    double CTQMaxValueHF;
 
     public ArrayList<ImageModel> getmAlImage() {
         return mAlImage;

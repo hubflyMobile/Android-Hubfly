@@ -117,8 +117,7 @@ public class NewCTQ extends Activity {
         Gson mGson = new Gson();
         String mStrCtq = getIntent().getStringExtra("CTQ");
         String mStrQap = getIntent().getStringExtra("QAP");
-        Type type = new TypeToken<ArrayList<ActivityModel>>() {
-        }.getType();
+        Type type = new TypeToken<ArrayList<ActivityModel>>() {}.getType();
         mAlActivityCTQ = mGson.fromJson(mStrCtq, type);
         mAlActivityQAP = mGson.fromJson(mStrQap, type);
 
@@ -163,7 +162,7 @@ public class NewCTQ extends Activity {
 
         mTxtQapName = (TextView) findViewById(R.id.txt_qap_name);
         mTxtCtqName = (TextView) findViewById(R.id.txt_ctq_name);
-        mTxtUserName = (TextView) findViewById(R.id.txt_name);
+
 
         mImgBack = (ImageView) findViewById(R.id.img_back);
         mImgProfile = (ImageView) findViewById(R.id.img_profile);
@@ -172,7 +171,7 @@ public class NewCTQ extends Activity {
         mEdtCtoValue = (EditText) findViewById(R.id.edt_cto_no);
         mEdtRemarks = (EditText) findViewById(R.id.edt_remarks);
         mEdtRemarksQap = (EditText) findViewById(R.id.edt_qap_remarks);
-
+        mTxtUserName = (TextView) findViewById(R.id.txt_name);
         mTxtUserName.setText(Config.UserName);
 
         mLlCto.setVisibility(View.VISIBLE);
@@ -201,7 +200,9 @@ public class NewCTQ extends Activity {
             mCtoModel.setIndex(model.getID());
             mCtoModel.setRemarks(model.getRemarksHF());
             mCtoModel.setCTQValueHF(model.getCTQValueHF());
-
+            mCtoModel.setCTQMinValueHF(model.getCTQMinValueHF());
+            mCtoModel.setCTQMaxValueHF(model.getCTQMaxValueHF());
+            mCtoModel.setQACJobIDHF(model.getQACJobIDHF());
             Boolean isVerified = model.getVerifiedHF() == null ? false : model.getVerifiedHF();
             mCtoModel.setChecked(false);
             mCtoModel.setVerifiedHF(isVerified);
@@ -223,6 +224,9 @@ public class NewCTQ extends Activity {
                 mCtoModel.setIndex(model.getID());
                 mCtoModel.setRemarks(model.getRemarksHF());
                 mCtoModel.setmAlImage(model.getmAlImage());
+                mCtoModel.setCTQMinValueHF(model.getCTQMinValueHF());
+                mCtoModel.setCTQMaxValueHF(model.getCTQMaxValueHF());
+                mCtoModel.setQACJobIDHF(model.getQACJobIDHF());
                 Boolean isVerified = model.getVerifiedHF() == null ? false : model.getVerifiedHF();
                 mCtoModel.setChecked(false);
                 mCtoModel.setVerifiedHF(isVerified);

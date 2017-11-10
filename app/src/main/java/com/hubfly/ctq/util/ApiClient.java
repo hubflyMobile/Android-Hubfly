@@ -1,6 +1,9 @@
 package com.hubfly.ctq.util;
 
 import android.app.Activity;
+import android.content.Intent;
+
+import com.hubfly.ctq.activity.Splash;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -67,6 +70,13 @@ public class ApiClient {
                         mStringBuilder.append(line + "\n");
                     }
                     Utility.logging("Sb String" + mStringBuilder.toString());
+                } else {
+                    SessionManager mSessionManager = new SessionManager(mActivity);
+                    mSessionManager.ClearSharepointId();
+
+                    Intent mIntent = new Intent(mActivity, Splash.class);
+                    mActivity.startActivity(mIntent);
+                    mActivity.finish();
                 }
                 mInputStream.close();
             } catch (UnsupportedEncodingException e) {
@@ -93,7 +103,7 @@ public class ApiClient {
             HttpResponse httpResponse = httpClient.execute(httpPost);
             HttpEntity httpEntity = httpResponse.getEntity();
             Integer postStatusCode = httpResponse.getStatusLine().getStatusCode();
-            Utility.logging(postStatusCode + "ResponseCode"+mJsonObject);
+            Utility.logging(postStatusCode + "ResponseCode" + mJsonObject);
         } catch (IOException e) {
             e.printStackTrace();
         }

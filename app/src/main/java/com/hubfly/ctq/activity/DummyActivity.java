@@ -122,6 +122,7 @@ public class DummyActivity extends Activity {
                 JSONObject mJsonObject = new JSONObject(responseString);
                 userDetailsModel = new UserDetailsModel();
                 Config.UserName = mJsonObject.getString("Title");
+                Config.Department = mJsonObject.getString("Department");
                 userDetailsModel.setTitle(mJsonObject.getString("Title"));
                 if (mJsonObject.has("Department")) {
                     userDetailsModel.setDepartment(mJsonObject.getString("Department"));

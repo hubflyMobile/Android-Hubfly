@@ -117,7 +117,7 @@ public class CtoAdapter extends RecyclerView.Adapter<CtoAdapter.DataObjectHolder
                     mNewCTQ.mEdtRemarks.setText("");
                     hideshow(true);
                 } else {
-                    mNewCTQ.mEdtCtoValue.setText(model.getCTQValueHF());
+                    mNewCTQ.mEdtCtoValue.setText(String.valueOf(model.getCTQValueHF()));
                     mNewCTQ.mEdtRemarks.setText(model.getRemarks());
                     hideshow(false);
                 }
@@ -129,7 +129,7 @@ public class CtoAdapter extends RecyclerView.Adapter<CtoAdapter.DataObjectHolder
             public void onComplete(RippleView rippleView) {
                 if (mUtility.validation(mActivity, mNewCTQ.mEdtCtoValue, "CTQ")) {
                     if (Utility.isInternetConnected(mActivity)) {
-                        GenerateNewCtq(mActivity, mAlCto.get(lastCheckedPos).getIndex(), mNewCTQ.mEdtCtoValue.getText().toString(), mNewCTQ.mEdtRemarks.getText().toString(), lastCheckedPos, mAlCto.get(lastCheckedPos).getTaskName());
+                        GenerateNewCtq(mActivity, mAlCto.get(lastCheckedPos).getIndex(), mNewCTQ.mEdtCtoValue.getText().toString(), mNewCTQ.mEdtRemarks.getText().toString(), lastCheckedPos, mAlCto.get(lastCheckedPos).getTaskName(),mAlCto.get(lastCheckedPos).getCTQMinValueHF(),mAlCto.get(lastCheckedPos).getCTQMaxValueHF(),mAlCto.get(lastCheckedPos).getQACJobIDHF());
                     }
                 }
             }
@@ -146,12 +146,15 @@ public class CtoAdapter extends RecyclerView.Adapter<CtoAdapter.DataObjectHolder
     }
 
 
-    private void GenerateNewCtq(final Activity mActivity, Integer ID, final String CtqValue, final String Remarks, final int Position, final String taskname) {
+    private void GenerateNewCtq(final Activity mActivity, Integer ID, final String CtqValue, final String Remarks, final int Position, final String taskname,final double minValue,final double maxValue,final int QacJobId) {
         try {
             SendCTQModel mSendCTQModel = new SendCTQModel();
             mSendCTQModel.setID(ID);
             mSendCTQModel.setCTQValueHF(CtqValue);
             mSendCTQModel.setRemarksHF(Remarks);
+            mSendCTQModel.setQACJobIDHF(QacJobId);
+            mSendCTQModel.setCTQMinValueHF(minValue);
+            mSendCTQModel.setCTQMaxValueHF(maxValue);
             Gson mGson = new Gson();
             String mJobData = mGson.toJson(mSendCTQModel);
 
@@ -175,6 +178,8 @@ public class CtoAdapter extends RecyclerView.Adapter<CtoAdapter.DataObjectHolder
                         ctoModel.setCTQValueHF(CtqValue);
                         ctoModel.setVerifiedHF(true);
                         ctoModel.setRemarks(Remarks);
+                        ctoModel.setCTQMinValueHF(minValue);
+                        ctoModel.setCTQMaxValueHF(maxValue);
                         ctoModel.setChecked(true);
                         mNewCTQ.mAlCto.set(Position, ctoModel);
                         hideshow(false);

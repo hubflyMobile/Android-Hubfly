@@ -19,8 +19,10 @@ import com.hubfly.ctq.Model.ActivityModel;
 import com.hubfly.ctq.Model.ImageModel;
 import com.hubfly.ctq.Model.OpenCtqModel;
 import com.hubfly.ctq.R;
+import com.hubfly.ctq.activity.NewCTQ;
 import com.hubfly.ctq.adapter.CtoListAdapter;
 import com.hubfly.ctq.util.Config;
+import com.hubfly.ctq.util.GlideUtil;
 import com.hubfly.ctq.util.HttpApi;
 import com.hubfly.ctq.util.OnResponseCallback;
 import com.hubfly.ctq.util.RippleView;
@@ -46,7 +48,10 @@ public class OpenCtQ extends Fragment {
     Utility mUtility;
     LinearLayout mLlOpenCtq, mLlNoData, mLlRootList;
     EditText mEdtSearch;
-    ImageView mImgClear;
+    ImageView mImgClear,mImgProfile;
+    GlideUtil mGlideUtil;
+    TextView mTxtUserName;
+
 
     @Nullable
     @Override
@@ -64,6 +69,7 @@ public class OpenCtQ extends Fragment {
     void Initializaion() {
         mAlOpenCtq = new ArrayList<>();
         mUtility = new Utility(getActivity());
+        mGlideUtil = new GlideUtil(getActivity());
     }
 
     void InitiizationViews(View rootView) {
@@ -77,8 +83,18 @@ public class OpenCtQ extends Fragment {
         mRvOpenCTQ = mUtility.CustomRecycleView(getActivity(), mLlOpenCtq);
         mTxtHeading.setText("Open Quality Assurance Check");
 
+        mImgProfile = (ImageView)rootView. findViewById(R.id.img_profile);
+
         mLlRootList.setVisibility(View.GONE);
         mUtility.HideShowKeyboard(getActivity(), mEdtSearch, "0");
+
+        mTxtUserName = (TextView)rootView.findViewById(R.id.txt_name);
+        mTxtUserName.setText(Config.UserName);
+
+
+        if (Config.PictureUrl != null && !Config.PictureUrl.equals("")) {
+            mGlideUtil.LoadImages(mImgProfile, 1, Config.PictureUrl, true, 1.5f, Config.PictureUrl);
+        }
     }
 
 
@@ -160,13 +176,16 @@ public class OpenCtQ extends Fragment {
                             for (int j = 0; j < mCtqJson.length(); j++) {
                                 JSONObject mObject = mCtqJson.getJSONObject(j);
                                 ActivityModel mActivityModel = mUtility.SetActivityData(mObject.getInt("ID"), mObject.getInt("JobIDHF"), mObject.getInt("PartIDHF"), mObject.getString("HeatNoHF"), mObject.getBoolean("VerifiedHF"), mObject.getString("ActivityNameHF"));
-                                mActivityModel.setCTQMinValueHF(mObject.getInt("CTQMinValueHF"));
-                                mActivityModel.setCTQMaxValueHF(mObject.getInt("CTQMaxValueHF"));
+                                mActivityModel.setCTQMinValueHF(mObject.getDouble("CTQMinValueHF"));
+                                mActivityModel.setCTQMaxValueHF(mObject.getDouble("CTQMaxValueHF"));
                                 if (mObject.getString("CTQValueHF") != null) {
                                     mActivityModel.setCTQValueHF(mObject.getString("CTQValueHF"));
                                 }
                                 if (mObject.getString("RemarksHF") != null) {
                                     mActivityModel.setRemarksHF(mObject.getString("RemarksHF"));
+                                }
+                                if(mObject.has("QACJobIDHF")){
+                                    mActivityModel.setQACJobIDHF(mObject.getInt("QACJobIDHF"));
                                 }
                                 mAlCtq.add(mActivityModel);
                             }
@@ -183,10 +202,13 @@ public class OpenCtQ extends Fragment {
                                     mActivityModel.setRemarksHF(mObject.getString("RemarksHF"));
                                 }
                                 if (mObject.has("CTQMinValueHF")) {
-                                    mActivityModel.setCTQMinValueHF(mObject.getInt("CTQMinValueHF"));
+                                    mActivityModel.setCTQMinValueHF(mObject.getDouble("CTQMinValueHF"));
                                 }
                                 if (mObject.has("CTQMaxValueHF")) {
-                                    mActivityModel.setCTQMaxValueHF(mObject.getInt("CTQMaxValueHF"));
+                                    mActivityModel.setCTQMaxValueHF(mObject.getDouble("CTQMaxValueHF"));
+                                }
+                                if(mObject.has("QACJobIDHF")){
+                                    mActivityModel.setQACJobIDHF(mObject.getInt("QACJobIDHF"));
                                 }
                                 ArrayList<ImageModel> mImgAl = new ArrayList<>();
                                 if (mObject.has("AttachmentFiles")) {

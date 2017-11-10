@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ import com.hubfly.ctq.activity.NewCTQ;
 import com.hubfly.ctq.adapter.NewQacListAdapter;
 import com.hubfly.ctq.adapter.NewQacPartListAdapter;
 import com.hubfly.ctq.util.Config;
+import com.hubfly.ctq.util.GlideUtil;
 import com.hubfly.ctq.util.HttpApi;
 import com.hubfly.ctq.util.OnResponseCallback;
 import com.hubfly.ctq.util.RippleView;
@@ -44,9 +47,10 @@ public class NewCtQ extends Fragment {
 
     RippleView mRvImgNavigation;
     TextView mTxtHeading;
-    RippleView mRvCustName, mRvPortNo, mRvCreate, mRvCancel,mRvRefresh;
+    RippleView mRvCustName, mRvPortNo, mRvCreate, mRvCancel, mRvRefresh;
     Spinner mSpCustName, mSpPartNo;
-    EditText mEdtHeatNo;
+    EditText mEdtHeatNo, mEdtFurnace;
+    LinearLayout mLlFurnace;
     Utility mUtility;
     ArrayList<PartJobCodeModel> mAlPartJobCode;
     NewQacListAdapter mAdapterCustName;
@@ -55,7 +59,9 @@ public class NewCtQ extends Fragment {
     String mStrJobCode = "";
     ArrayList<OpenCtqModel> mAlOpenCTQ;
     String CTQstatus, QAPStatus, CustomerName, PartName, JobCode;
-
+    ImageView mImgProfile;
+    GlideUtil mGlideUtil;
+    TextView mTxtUserName;
 
     @Nullable
     @Override
@@ -75,6 +81,7 @@ public class NewCtQ extends Fragment {
         mUtility = new Utility(getActivity());
         mAlPartJobCode = new ArrayList<>();
         mAlOpenCTQ = new ArrayList<>();
+        mGlideUtil = new GlideUtil(getActivity());
     }
 
 
@@ -89,7 +96,27 @@ public class NewCtQ extends Fragment {
         mRvPortNo = (RippleView) rootView.findViewById(R.id.rv_part_name);
         mRvCancel = (RippleView) rootView.findViewById(R.id.rv_cancel);
         mRvRefresh = (RippleView) rootView.findViewById(R.id.rv_refresh);
+
+        mLlFurnace = (LinearLayout) rootView.findViewById(R.id.ll_furnace);
+        mEdtFurnace = (EditText) rootView.findViewById(R.id.edt_furnace);
+
         mTxtHeading.setText("New Quality Assurance Check");
+
+        if (Config.Department != null && !Config.Department.equals("") && Config.Department.toLowerCase().equalsIgnoreCase("furnace")) {
+            mLlFurnace.setVisibility(View.VISIBLE);
+        } else {
+            mLlFurnace.setVisibility(View.INVISIBLE);
+        }
+
+        mImgProfile = (ImageView) rootView.findViewById(R.id.img_profile);
+        mTxtUserName = (TextView) rootView.findViewById(R.id.txt_name);
+        mTxtUserName.setText(Config.UserName);
+
+
+        if (Config.PictureUrl != null && !Config.PictureUrl.equals("")) {
+            mGlideUtil.LoadImages(mImgProfile, 1, Config.PictureUrl, true, 1.5f, Config.PictureUrl);
+        }
+
     }
 
     void SetClickEvents() {
@@ -106,7 +133,15 @@ public class NewCtQ extends Fragment {
             public void onComplete(RippleView rippleView) {
                 if (mEdtHeatNo.getText().toString().trim().length() > 0) {
                     mUtility.HideShowKeyboard(getActivity(), mEdtHeatNo, "0");
-                    GenerateNewCtq();
+                    if (Config.Department != null && !Config.Department.equals("") && Config.Department.toLowerCase().equalsIgnoreCase("furnace")) {
+                        if (mEdtFurnace.getText().toString().trim().length() > 0) {
+                            GenerateNewCtq(true);
+                        } else {
+                            mUtility.showToast(getActivity(), "Please Furnace", "0");
+                        }
+                    } else {
+                        GenerateNewCtq(false);
+                    }
                 } else {
                     mUtility.showToast(getActivity(), "Please add heat number", "0");
                 }
@@ -120,13 +155,29 @@ public class NewCtQ extends Fragment {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     if (mEdtHeatNo.getText().toString().trim().length() > 0) {
                         mUtility.HideShowKeyboard(getActivity(), mEdtHeatNo, "0");
-                        GenerateNewCtq();
+                        if (Config.Department != null && !Config.Department.equals("") && Config.Department.toLowerCase().equalsIgnoreCase("furnace")) {
+                            if (mEdtFurnace.getText().toString().trim().length() > 0) {
+                                GenerateNewCtq(true);
+                            } else {
+                                mUtility.showToast(getActivity(), "Please Furnace", "0");
+                            }
+                        } else {
+                            GenerateNewCtq(false);
+                        }
                     } else {
                         mUtility.showToast(getActivity(), "Please add heat number", "0");
                     }
                     ClickedDone = true;
                 }
                 return ClickedDone;
+            }
+        });
+
+        mEdtFurnace.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                mUtility.HideShowKeyboard(getActivity(), mEdtHeatNo, "0");
+                return false;
             }
         });
 
@@ -196,14 +247,16 @@ public class NewCtQ extends Fragment {
     }
 
 
-
-    void GenerateNewCtq() {
+    void GenerateNewCtq(Boolean IsFurnace) {
         try {
             if (Utility.isInternetConnected(getActivity())) {
                 JobWiseModel mJobWiseModel = new JobWiseModel();
                 mJobWiseModel.setPartIDHF(mPartId);
                 mJobWiseModel.setCustomerIDHF(mCustomerId);
                 mJobWiseModel.setHeatNumberHF(mEdtHeatNo.getText().toString());
+                if (IsFurnace) {
+                    mJobWiseModel.setFurnaceNameHF(mEdtFurnace.getText().toString());
+                }
                 Gson mGson = new Gson();
                 String mJobData = mGson.toJson(mJobWiseModel);
                 JSONObject mJsonObject = mUtility.SendParams(getActivity(), "0", mJobData, null);
@@ -242,8 +295,15 @@ public class NewCtQ extends Fragment {
                             for (int j = 0; j < mCtqJson.length(); j++) {
                                 JSONObject mObject = mCtqJson.getJSONObject(j);
                                 ActivityModel mActivityModel = mUtility.SetActivityData(mObject.getInt("ID"), mObject.getInt("JobIDHF"), mObject.getInt("PartIDHF"), mObject.getString("HeatNoHF"), mObject.getBoolean("VerifiedHF"), mObject.getString("ActivityNameHF"));
-                                mActivityModel.setCTQMinValueHF(mObject.getInt("CTQMinValueHF"));
-                                mActivityModel.setCTQMaxValueHF(mObject.getInt("CTQMaxValueHF"));
+                                if (mObject.has("CTQMinValueHF")) {
+                                    mActivityModel.setCTQMinValueHF(mObject.getDouble("CTQMinValueHF"));
+                                }
+                                if (mObject.has("CTQMaxValueHF")) {
+                                    mActivityModel.setCTQMaxValueHF(mObject.getDouble("CTQMaxValueHF"));
+                                }
+                                if (mObject.has("QACJobIDHF")) {
+                                    mActivityModel.setQACJobIDHF(mObject.getInt("QACJobIDHF"));
+                                }
                                 mAlCtq.add(mActivityModel);
                             }
                             mOpenCtqModel.setmAlCtq(mAlCtq);
@@ -255,10 +315,13 @@ public class NewCtQ extends Fragment {
                                 JSONObject mObject = mCtqJson.getJSONObject(j);
                                 ActivityModel mActivityModel = mUtility.SetActivityData(mObject.getInt("ID"), mObject.getInt("JobIDHF"), mObject.getInt("PartIDHF"), mObject.getString("HeatNoHF"), mObject.getBoolean("VerifiedHF"), mObject.getString("ActivityNameHF"));
                                 if (mObject.has("CTQMinValueHF")) {
-                                    mActivityModel.setCTQMinValueHF(mObject.getInt("CTQMinValueHF"));
+                                    mActivityModel.setCTQMinValueHF(mObject.getDouble("CTQMinValueHF"));
                                 }
                                 if (mObject.has("CTQMaxValueHF")) {
-                                    mActivityModel.setCTQMaxValueHF(mObject.getInt("CTQMaxValueHF"));
+                                    mActivityModel.setCTQMaxValueHF(mObject.getDouble("CTQMaxValueHF"));
+                                }
+                                if (mObject.has("QACJobIDHF")) {
+                                    mActivityModel.setQACJobIDHF(mObject.getInt("QACJobIDHF"));
                                 }
                                 mAlQap.add(mActivityModel);
                             }
@@ -318,7 +381,7 @@ public class NewCtQ extends Fragment {
             if (Utility.isInternetConnected(getActivity())) {
                 JSONObject mJsonObject = mUtility.SendParams(getActivity(), null, null, null);
                 Utility.logging(mJsonObject.toString());
-                JSONObject jsonObject = mUtility.SendParams(getActivity(),"0", null, null);
+                JSONObject jsonObject = mUtility.SendParams(getActivity(), "0", null, null);
                 HttpApi api = new HttpApi(getActivity(), true, new OnResponseCallback() {
                     @Override
                     public void responseCallBack(Activity activity, String responseString) {
@@ -338,12 +401,12 @@ public class NewCtQ extends Fragment {
                             e.printStackTrace();
                         }
                     }
-                },  Config.Baseurl + Config.GetPartsDeptWise, "POST", jsonObject);
+                }, Config.Baseurl + Config.GetPartsDeptWise, "POST", jsonObject);
                 api.execute();
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             mEdtHeatNo.setText("");
             mSpCustName.setSelection(0);
             mSpPartNo.setSelection(0);

@@ -40,6 +40,7 @@ import java.util.ArrayList;
 
 public class CloseCtQ extends Fragment {
 
+    Boolean isHeatNo = Boolean.valueOf(false);
     RippleView mRvImgNavigation;
     TextView mTxtHeading;
     ArrayList<OpenCtqModel> mAlOpenCtq;
@@ -51,6 +52,8 @@ public class CloseCtQ extends Fragment {
     ImageView mImgClear,mImgProfile;
     GlideUtil mGlideUtil;
     TextView mTxtUserName;
+    LinearLayout mLlHeatNoOpen;
+    TextView mTxtHeatNoOpen;
 
     @Nullable
     @Override
@@ -83,20 +86,44 @@ public class CloseCtQ extends Fragment {
         mRvOpenCTQ = mUtility.CustomRecycleView(getActivity(), mLlOpenCtq);
         mTxtHeading.setText("Closed Quality Assurance Check");
 
+        this.mLlHeatNoOpen = (LinearLayout) rootView.findViewById(R.id.ll_heat_no_open);
+        this.mTxtHeatNoOpen = (TextView) rootView.findViewById(R.id.txt_heat_no_open);
+
         mLlRootList.setVisibility(View.GONE);
         mUtility.HideShowKeyboard(getActivity(), mEdtSearch, "0");
 
         mImgProfile = (ImageView)rootView. findViewById(R.id.img_profile);
 
-        if (Config.PictureUrl != null && !Config.PictureUrl.equals("")) {
-            mGlideUtil.LoadImages(mImgProfile, 1, Config.PictureUrl, true, 1.5f, Config.PictureUrl);
+        if (!(Config.Email == null || Config.Email.equals(""))) {
+            String Image = Config.UserProfilePhoto + Config.Email;
+            this.mGlideUtil.LoadImages(this.mImgProfile, Integer.valueOf(1), Image, true, Float.valueOf(1.75f), Image);
         }
 
         mTxtUserName = (TextView)rootView.findViewById(R.id.txt_name);
         mTxtUserName.setText(Config.UserName);
 
+        HideShowDepartMent();
     }
 
+    void HideShowDepartMent() {
+        if (Config.Department != null && !Config.Department.equals("")) {
+            if (Config.Department.toLowerCase().equals(Config.CORE_SHOP)) {
+                this.isHeatNo = Boolean.valueOf(false);
+                this.mLlHeatNoOpen.setVisibility(View.GONE);
+                return;
+            }
+            if (Config.Department.toLowerCase().equals(Config.CORE_SHOP_CS1) || Config.Department.toLowerCase().equals(Config.CORE_SHOP_CS2) || Config.Department.toLowerCase().equals(Config.PATTERN_SHOP) || Config.Department.toLowerCase().equals(Config.CORE_SHOP)) {
+                this.mTxtHeatNoOpen.setText("Process Type");
+            } else {
+                this.mTxtHeatNoOpen.setText("Heat Number");
+            }
+
+
+
+            this.isHeatNo = Boolean.valueOf(true);
+            this.mLlHeatNoOpen.setVisibility(View.VISIBLE);
+        }
+    }
 
     void SetClickEvents() {
         mRvImgNavigation.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
@@ -169,6 +196,9 @@ public class CloseCtQ extends Fragment {
                 for (int i = 0; i < mJsonArray.length(); i++) {
                     JSONObject mJsonObject = mJsonArray.getJSONObject(i);
                     OpenCtqModel mOpenCtqModel = mUtility.SetOpenCtqData(mJsonObject.getInt("PartID"),mJsonObject.getString("HeatNumber"), mJsonObject.getString("CustomerName"), mJsonObject.getString("JobCode"),mJsonObject.getString("PartName"), mJsonObject.getString("CTQStatus"), mJsonObject.getString("QAPStatus"));
+                    if (mJsonObject.has("ProcessTypeHF") && !mJsonObject.getString("ProcessTypeHF").equals("null")) {
+                        mOpenCtqModel.setProcessTypeHF(mJsonObject.getInt("ProcessTypeHF"));
+                    }
                     ArrayList<ActivityModel> mAlCtq = new ArrayList<>();
                     if (mJsonObject.has("CTQJobs")) {
                         JSONArray mCtqJson = mJsonObject.getJSONArray("CTQJobs");
@@ -209,7 +239,7 @@ public class CloseCtQ extends Fragment {
                                 for (int k = 0; k < jsonArray.length(); k++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(k);
                                     ImageModel mImageModel = new ImageModel();
-                                    mImageModel.setBaseImage(jsonObject.getString("ServerRelativeUrl"));
+                                    mImageModel.setBaseImage(Config.ImageUrl +jsonObject.getString("ServerRelativeUrl"));
                                     mImageModel.setFileName(jsonObject.getString("FileName"));
                                     mImageModel.setServer(true);
                                     mImgAl.add(mImageModel);

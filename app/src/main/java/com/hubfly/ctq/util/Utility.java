@@ -35,6 +35,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import static com.hubfly.ctq.util.Config.mAlCustomer;
@@ -392,5 +394,13 @@ public class Utility {
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, Response);
         mActivity.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
     }
+    public String setCurrentTimeStamp() {
+        return Long.valueOf(System.currentTimeMillis() / 1000).toString();
+    }
 
+    public String GetCurrentDate() {
+        Calendar c = Calendar.getInstance();
+        System.out.println("Current time => " + c.getTime());
+        return new SimpleDateFormat("dd-MM-yyyy , HH:mm").format(c.getTime());
+    }
 }

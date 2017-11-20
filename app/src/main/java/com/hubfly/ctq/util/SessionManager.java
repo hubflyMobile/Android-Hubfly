@@ -124,4 +124,13 @@ public class SessionManager {
         return map;
     }
 
+    public void SetCurrentTimeStamp(String timestamp) {
+        this.mEditor.putString("Current", timestamp);
+        this.mEditor.commit();
+    }
+
+    public String getCurrentTimeStamp() {
+        return this.mSharedPreferences.getString("Current", null);
+    }
+
 }

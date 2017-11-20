@@ -1,11 +1,9 @@
 package com.hubfly.ctq.activity;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -14,7 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -44,7 +42,6 @@ import com.hubfly.ctq.util.Utility;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -54,34 +51,61 @@ import java.util.ArrayList;
 
 public class NewCTQ extends Activity {
 
-    public RecyclerView mRvQapList, mRvCtoList;
-    public RippleView mRvCto, mRvQap, mRvImgNavigation, mRvChooseImage, mRvSubmit, mRvQapSubmit;
-    Utility mUtility;
-    public LinearLayout mLlCtqValue, mLlQap, mLlCto, mLlCtqList, mllQapList, mLlCtoValue, mLlQapValue, mLlCtqClick, mLlQapClick, mLlOpenQapCtqHeader;
-    TextView mTxtCustName, mTxtPartNo, mTxtJobCode, mTxtCtqName, mTxtQapName, mTxtUserName;
-    ImageView mImgBack, mImgProfile;
-    int REQUEST_CAMERA = 3;
-    public ArrayList<ImageModel> mAlImageUri;
-    public ArrayList<ImageModel> mAlBase;
-    Dialog mLoginDialog;
-    LayoutInflater mLayoutInflater;
-    View mPopupView;
-    MediaUtility mMediaUtil;
-    CtoAdapter mAdapter;
-    QapAdapter mQapAdapter;
-    public ArrayList<CtoModel> mAlCto,mAlQap;
-    public TextView mTxtCtqCount, mTxtQapCount;
-    GridView mGridImage;
-    QapImageAdapter mQapImageAdapter;
-    public EditText mEdtCtoValue, mEdtRemarks, mEdtRemarksQap;
     static String CaptureImageName = "";
-    Uri mMediaCaptureUri;
-    Handler mHandler = new Handler();
     private static final int REQUEST_CODE = 100;
-    Runnable mTask;
-    GlideUtil mGlideUtil;
+    int REQUEST_CAMERA = 3;
+    CtoAdapter mAdapter;
     public ArrayList<ActivityModel> mAlActivityCTQ;
     public ArrayList<ActivityModel> mAlActivityQAP;
+    public ArrayList<ImageModel> mAlBase;
+    public ArrayList<CtoModel> mAlCto;
+    public ArrayList<ImageModel> mAlImageUri;
+    public ArrayList<CtoModel> mAlQap;
+    public EditText mEdtCtoValue;
+    public EditText mEdtRemarks;
+    public EditText mEdtRemarksQap;
+    GlideUtil mGlideUtil;
+    GridView mGridImage;
+    Handler mHandler = new Handler();
+    ImageView mImgBack;
+    ImageView mImgProfile;
+    LayoutInflater mLayoutInflater;
+    public LinearLayout mLlCto;
+    public LinearLayout mLlCtoValue;
+    public LinearLayout mLlCtqClick;
+    public LinearLayout mLlCtqList;
+    public LinearLayout mLlCtqValue;
+    LinearLayout mLlFurnace;
+    public LinearLayout mLlOpenQapCtqHeader;
+    public LinearLayout mLlQap;
+    public LinearLayout mLlQapClick;
+    public LinearLayout mLlQapValue;
+    Dialog mLoginDialog;
+    Uri mMediaCaptureUri;
+    MediaUtility mMediaUtil;
+    View mPopupView;
+    QapAdapter mQapAdapter;
+    QapImageAdapter mQapImageAdapter;
+    public RippleView mRvChooseImage;
+    public RippleView mRvCto;
+    public RecyclerView mRvCtoList;
+    public RippleView mRvImgNavigation;
+    public RippleView mRvQap;
+    public RecyclerView mRvQapList;
+    public RippleView mRvQapSubmit;
+    public RippleView mRvSubmit;
+    Runnable mTask;
+    public TextView mTxtCtqCount;
+    TextView mTxtCtqName;
+    TextView mTxtFurnace;
+    TextView mTxtGroupCode;
+    TextView mTxtJobCode;
+    TextView mTxtPartNo;
+    public TextView mTxtQapCount;
+    TextView mTxtQapName;
+    TextView mTxtUserName;
+    Utility mUtility;
+    public LinearLayout mllQapList;
 
 
     @Override
@@ -111,80 +135,83 @@ public class NewCTQ extends Activity {
 
     void getBundleData() {
 
-        mAlActivityCTQ.clear();
-        mAlActivityQAP.clear();
 
+        this.mAlActivityCTQ.clear();
+        this.mAlActivityQAP.clear();
         Gson mGson = new Gson();
         String mStrCtq = getIntent().getStringExtra("CTQ");
         String mStrQap = getIntent().getStringExtra("QAP");
-        Type type = new TypeToken<ArrayList<ActivityModel>>() {}.getType();
-        mAlActivityCTQ = mGson.fromJson(mStrCtq, type);
-        mAlActivityQAP = mGson.fromJson(mStrQap, type);
-
+        Type type = new TypeToken<ArrayList<ActivityModel>>() {
+        }.getType();
+        this.mAlActivityCTQ = (ArrayList) mGson.fromJson(mStrCtq, type);
+        this.mAlActivityQAP = (ArrayList) mGson.fromJson(mStrQap, type);
         getCtqQapData();
+        this.mTxtCtqCount.setText(getIntent().getStringExtra("CTQSTATUS"));
+        this.mTxtQapCount.setText(getIntent().getStringExtra("QAPSTATUS"));
+        this.mTxtGroupCode.setText(getIntent().getStringExtra("GROUPCODE"));
+        this.mTxtPartNo.setText(getIntent().getStringExtra("PARTNAME"));
+        this.mTxtJobCode.setText(getIntent().getStringExtra("JOBCODE"));
+        if (getIntent().getStringExtra("FURNACE") == null || getIntent().getStringExtra("FURNACE").equals("") || !getIntent().getStringExtra("FURNACE").toLowerCase().equals(Config.MELTING)) {
+            this.mLlFurnace.setVisibility(View.INVISIBLE);
+            return;
+        }
+        this.mLlFurnace.setVisibility(View.VISIBLE);
+        this.mTxtFurnace.setText(getIntent().getStringExtra("FURNACE"));
 
-        mTxtCtqCount.setText(getIntent().getStringExtra("CTQSTATUS"));
-        mTxtQapCount.setText(getIntent().getStringExtra("QAPSTATUS"));
 
-        mTxtCustName.setText(getIntent().getStringExtra("CUSTOMERNAME"));
-        mTxtPartNo.setText(getIntent().getStringExtra("PARTNAME"));
-        mTxtJobCode.setText(getIntent().getStringExtra("JOBCODE"));
     }
 
 
     void InitializeViews() {
-        mRvCto = (RippleView) findViewById(R.id.rv_ctq_list);
-        mRvQap = (RippleView) findViewById(R.id.rv_qap_list);
-        mRvImgNavigation = (RippleView) findViewById(R.id.rv_back);
-        mRvChooseImage = (RippleView) findViewById(R.id.rv_choose);
-        mRvSubmit = (RippleView) findViewById(R.id.rv_ctq_submit);
-        mRvQapSubmit = (RippleView) findViewById(R.id.rv_qap_submit);
-
-        mLlOpenQapCtqHeader = (LinearLayout) findViewById(R.id.ll_root_qap_ctq);
-        mLlCto = (LinearLayout) findViewById(R.id.ll_ctq);
-        mLlCtqList = (LinearLayout) findViewById(R.id.ll_open_ctq_list);
-        mLlQap = (LinearLayout) findViewById(R.id.ll_qap);
-        mllQapList = (LinearLayout) findViewById(R.id.ll_open_qap_list);
-        mLlCtoValue = (LinearLayout) findViewById(R.id.ll_cto_value);
-        mLlQapValue = (LinearLayout) findViewById(R.id.ll_qap_value);
-        mLlCtqClick = (LinearLayout) findViewById(R.id.ll_ctq_click);
-        mLlQapClick = (LinearLayout) findViewById(R.id.ll_qap_click);
-        mLlCtqValue = (LinearLayout) findViewById(R.id.ll_ctq_value);
-
-        mRvCtoList = mUtility.CustomRecycleView(NewCTQ.this, mLlCtqList);
-        mRvQapList = mUtility.CustomRecycleView(NewCTQ.this, mllQapList);
-
-        mTxtCtqCount = (TextView) findViewById(R.id.txt_ctq_count);
-        mTxtQapCount = (TextView) findViewById(R.id.txt_qap_count);
-        mTxtCustName = (TextView) findViewById(R.id.txt_customer_name);
-        mTxtPartNo = (TextView) findViewById(R.id.txt_part_no);
-        mTxtJobCode = (TextView) findViewById(R.id.txt_job_code);
-
-        mTxtQapName = (TextView) findViewById(R.id.txt_qap_name);
-        mTxtCtqName = (TextView) findViewById(R.id.txt_ctq_name);
-
-
-        mImgBack = (ImageView) findViewById(R.id.img_back);
-        mImgProfile = (ImageView) findViewById(R.id.img_profile);
-        mGridImage = (GridView) findViewById(R.id.gv_images);
-
-        mEdtCtoValue = (EditText) findViewById(R.id.edt_cto_no);
-        mEdtRemarks = (EditText) findViewById(R.id.edt_remarks);
-        mEdtRemarksQap = (EditText) findViewById(R.id.edt_qap_remarks);
-        mTxtUserName = (TextView) findViewById(R.id.txt_name);
-        mTxtUserName.setText(Config.UserName);
-
-        mLlCto.setVisibility(View.VISIBLE);
-        mLlQap.setVisibility(View.GONE);
-
-
-        mLlQapValue.setVisibility(View.GONE);
-        mLlCtoValue.setVisibility(View.GONE);
-
-        if (Config.PictureUrl != null && !Config.PictureUrl.equals("")) {
-            mGlideUtil.LoadImages(mImgProfile, 1, Config.PictureUrl, true, 1.5f, Config.PictureUrl);
+        this.mRvCto = (RippleView) findViewById(R.id.rv_ctq_list);
+        this.mRvQap = (RippleView) findViewById(R.id.rv_qap_list);
+        this.mRvImgNavigation = (RippleView) findViewById(R.id.rv_back);
+        this.mRvChooseImage = (RippleView) findViewById(R.id.rv_choose);
+        this.mRvSubmit = (RippleView) findViewById(R.id.rv_ctq_submit);
+        this.mRvQapSubmit = (RippleView) findViewById(R.id.rv_qap_submit);
+        this.mLlOpenQapCtqHeader = (LinearLayout) findViewById(R.id.ll_root_qap_ctq);
+        this.mLlCto = (LinearLayout) findViewById(R.id.ll_ctq);
+        this.mLlCtqList = (LinearLayout) findViewById(R.id.ll_open_ctq_list);
+        this.mLlQap = (LinearLayout) findViewById(R.id.ll_qap);
+        this.mllQapList = (LinearLayout) findViewById(R.id.ll_open_qap_list);
+        this.mLlCtoValue = (LinearLayout) findViewById(R.id.ll_cto_value);
+        this.mLlQapValue = (LinearLayout) findViewById(R.id.ll_qap_value);
+        this.mLlCtqClick = (LinearLayout) findViewById(R.id.ll_ctq_click);
+        this.mLlQapClick = (LinearLayout) findViewById(R.id.ll_qap_click);
+        this.mLlCtqValue = (LinearLayout) findViewById(R.id.ll_ctq_value);
+        this.mLlFurnace = (LinearLayout) findViewById(R.id.ll_furnace);
+        this.mRvCtoList = this.mUtility.CustomRecycleView(this, this.mLlCtqList);
+        this.mRvQapList = this.mUtility.CustomRecycleView(this, this.mllQapList);
+        this.mTxtCtqCount = (TextView) findViewById(R.id.txt_ctq_count);
+        this.mTxtQapCount = (TextView) findViewById(R.id.txt_qap_count);
+        this.mTxtGroupCode = (TextView) findViewById(R.id.txt_customer_name);
+        this.mTxtPartNo = (TextView) findViewById(R.id.txt_part_no);
+        this.mTxtJobCode = (TextView) findViewById(R.id.txt_job_code);
+        this.mTxtFurnace = (TextView) findViewById(R.id.txt_furnace);
+        this.mTxtQapName = (TextView) findViewById(R.id.txt_qap_name);
+        this.mTxtCtqName = (TextView) findViewById(R.id.txt_ctq_name);
+        this.mTxtUserName = (TextView) findViewById(R.id.txt_name);
+        this.mImgBack = (ImageView) findViewById(R.id.img_back);
+        this.mImgProfile = (ImageView) findViewById(R.id.img_profile);
+        this.mGridImage = (GridView) findViewById(R.id.gv_images);
+        this.mEdtCtoValue = (EditText) findViewById(R.id.edt_cto_no);
+        this.mEdtRemarks = (EditText) findViewById(R.id.edt_remarks);
+        this.mEdtRemarksQap = (EditText) findViewById(R.id.edt_qap_remarks);
+        this.mLlCto.setVisibility(View.VISIBLE);
+        this.mLlQap.setVisibility(View.GONE);
+        this.mLlQapValue.setVisibility(View.GONE);
+        this.mLlCtoValue.setVisibility(View.GONE);
+        this.mTxtUserName.setText(Config.UserName);
+        if (Config.Email != null && !Config.Email.equals("")) {
+            String Image = Config.UserProfilePhoto + Config.Email;
+            this.mGlideUtil.LoadImages(this.mImgProfile, Integer.valueOf(1), Image, true, Float.valueOf(1.75f), Image);
         }
 
+        if (Config.Department.toLowerCase().equals(Config.PATTERN_SHOP)) {
+            this.mTxtGroupCode.setVisibility(View.GONE);
+        } else {
+            this.mTxtGroupCode.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -193,21 +220,19 @@ public class NewCTQ extends Activity {
             mAlCto.clear();
         }
         for (int i = 0; i < mAlActivityCTQ.size(); i++) {
-            ActivityModel model = mAlActivityCTQ.get(i);
-
+            ActivityModel model = (ActivityModel) this.mAlActivityCTQ.get(i);
             CtoModel mCtoModel = new CtoModel();
             mCtoModel.setTaskName(model.getActivityNameHF());
-            mCtoModel.setIndex(model.getID());
+            mCtoModel.setIndex(Integer.valueOf(model.getID()));
             mCtoModel.setRemarks(model.getRemarksHF());
             mCtoModel.setCTQValueHF(model.getCTQValueHF());
-            mCtoModel.setCTQMinValueHF(model.getCTQMinValueHF());
-            mCtoModel.setCTQMaxValueHF(model.getCTQMaxValueHF());
             mCtoModel.setQACJobIDHF(model.getQACJobIDHF());
-            Boolean isVerified = model.getVerifiedHF() == null ? false : model.getVerifiedHF();
-            mCtoModel.setChecked(false);
+            mCtoModel.setCTQMaxValueHF(model.getCTQMaxValueHF());
+            mCtoModel.setCTQMinValueHF(model.getCTQMinValueHF());
+            Boolean isVerified = Boolean.valueOf(model.getVerifiedHF() == null ? false : model.getVerifiedHF().booleanValue());
+            mCtoModel.setChecked(Boolean.valueOf(false));
             mCtoModel.setVerifiedHF(isVerified);
-
-            mAlCto.add(mCtoModel);
+            this.mAlCto.add(mCtoModel);
         }
         mAdapter.notifyDataSetChanged();
 
@@ -217,21 +242,17 @@ public class NewCTQ extends Activity {
 
         if (mAlActivityQAP != null && mAlActivityQAP.size() > 0) {
             for (int i = 0; i < mAlActivityQAP.size(); i++) {
-                ActivityModel model = mAlActivityQAP.get(i);
-
+                ActivityModel model = (ActivityModel) this.mAlActivityQAP.get(i);
                 CtoModel mCtoModel = new CtoModel();
                 mCtoModel.setTaskName(model.getActivityNameHF());
-                mCtoModel.setIndex(model.getID());
+                mCtoModel.setIndex(Integer.valueOf(model.getID()));
                 mCtoModel.setRemarks(model.getRemarksHF());
                 mCtoModel.setmAlImage(model.getmAlImage());
-                mCtoModel.setCTQMinValueHF(model.getCTQMinValueHF());
-                mCtoModel.setCTQMaxValueHF(model.getCTQMaxValueHF());
                 mCtoModel.setQACJobIDHF(model.getQACJobIDHF());
-                Boolean isVerified = model.getVerifiedHF() == null ? false : model.getVerifiedHF();
-                mCtoModel.setChecked(false);
+                Boolean isVerified = Boolean.valueOf(model.getVerifiedHF() == null ? false : model.getVerifiedHF().booleanValue());
+                mCtoModel.setChecked(Boolean.valueOf(false));
                 mCtoModel.setVerifiedHF(isVerified);
-
-                mAlQap.add(mCtoModel);
+                this.mAlQap.add(mCtoModel);
             }
             mQapAdapter.notifyDataSetChanged();
         }
@@ -262,6 +283,7 @@ public class NewCTQ extends Activity {
                 mLlQapValue.setVisibility(View.GONE);
                 mLlCtoValue.setVisibility(View.GONE);
                 mLlCtqValue.setBackgroundColor(getResources().getColor(R.color.white));
+                mAlBase.clear();
             }
         });
 
@@ -334,146 +356,128 @@ public class NewCTQ extends Activity {
         view2.setTextColor(getResources().getColor(R.color.list_normal_tab));
     }
 
-    public void AddImage(final String MediaPath, String option, String filename,Boolean server) {
+    public void AddImage(String MediaPath, String option, String filename, Boolean server) {
         if (option.equals("0")) {
-            mAlImageUri.add(AddImageModelData(MediaPath, filename,server));
-            mQapImageAdapter = new QapImageAdapter(NewCTQ.this, mAlImageUri, "0");
-            mGridImage.setAdapter(mQapImageAdapter);
-            mQapImageAdapter.notifyDataSetChanged();
+            this.mAlImageUri.add(AddImageModelData(MediaPath, filename, server));
+            this.mQapImageAdapter = new QapImageAdapter(this, this.mAlImageUri, "0");
+            this.mGridImage.setAdapter(this.mQapImageAdapter);
+            this.mQapImageAdapter.notifyDataSetChanged();
         } else if (option.equals("1")) {
-            mAlImageUri.add(AddImageModelData(MediaPath, filename,server));
-            mQapImageAdapter = new QapImageAdapter(NewCTQ.this, mAlImageUri, "1");
-            mGridImage.setAdapter(mQapImageAdapter);
-            mQapImageAdapter.notifyDataSetChanged();
+            this.mAlImageUri.add(AddImageModelData(MediaPath, filename, server));
+            this.mQapImageAdapter = new QapImageAdapter(this, this.mAlImageUri, "1");
+            this.mGridImage.setAdapter(this.mQapImageAdapter);
+            this.mQapImageAdapter.notifyDataSetChanged();
         } else {
-            mAlImageUri.clear();
-            mQapImageAdapter.notifyDataSetChanged();
+            this.mAlImageUri.clear();
+            this.mQapImageAdapter.notifyDataSetChanged();
         }
     }
 
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == REQUEST_CAMERA) {
-                File mFile = new File(Utility.UPLOAD_IMAGE_DIRECTORY + "/" + CaptureImageName);
-                if (mFile.exists()) {
-                    AddImage("file://" + mFile.getPath(), "0", CaptureImageName,false);
-                    try {
-                        Uri imageUri = Uri.fromFile(mFile);
-                        final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                        mAlBase.add(AddImageModelData(encodeImage(selectedImage), CaptureImageName,false));
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+        if (resultCode == -1 && requestCode == this.REQUEST_CAMERA) {
+            File mFile = new File(Utility.UPLOAD_IMAGE_DIRECTORY + "/" + CaptureImageName);
+            if (mFile.exists()) {
+                AddImage("file://" + mFile.getPath(), "0", CaptureImageName, Boolean.valueOf(false));
+                try {
+                    this.mAlBase.add(AddImageModelData(encodeImage(BitmapFactory.decodeStream(getContentResolver().openInputStream(Uri.fromFile(mFile)))), CaptureImageName, Boolean.valueOf(false)));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
             }
         }
     }
+
 
     public boolean isPermissionGranted(Activity mActivity, int option, Runnable run) {
         String permissions = "";
         String information = "";
-        mTask = run;
+        this.mTask = run;
         if (option == 2) {
-            permissions = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-            information = "" + "Folder Access";
+            permissions = "android.permission.WRITE_EXTERNAL_STORAGE";
+            information = "Folder Access";
         } else if (option == 3) {
-            permissions = Manifest.permission.READ_EXTERNAL_STORAGE;
-            information = "" + "Folder Access";
+            permissions = "android.permission.READ_EXTERNAL_STORAGE";
+            information = "Folder Access";
         }
-        if (!permissions.equals("")) {
-            if (Build.VERSION.SDK_INT >= 23) {
-                try {
-                    if (ActivityCompat.checkSelfPermission(mActivity, permissions) == PackageManager.PERMISSION_DENIED) {
-                        requestPermissions(mActivity, permissions, information);
-                        return false;
-                    } else if (ActivityCompat.checkSelfPermission(mActivity, permissions) == PackageManager.PERMISSION_GRANTED) {
-                        return true;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return true;
-                }
+        if (permissions.equals("") || Build.VERSION.SDK_INT < 23) {
+            return true;
+        }
+        try {
+            if (ContextCompat.checkSelfPermission(mActivity, permissions) != -1) {
+                return ContextCompat.checkSelfPermission(mActivity, permissions) == 0 ? true : true;
+            } else {
+                requestPermissions(mActivity, permissions, information);
+                return false;
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return true;
         }
-        return true;
     }
 
     private void requestPermissions(Activity mActivity, final String permissions, String information) {
-        /**
-         * Commented due to directly asking permission
-         */
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (shouldShowRequestPermissionRationale(permissions)) {
-                try {
-                    if (mLoginDialog == null) {
-                        mLoginDialog = mUtility.getDialog(mActivity);
-                    }
-                    mPopupView = mLayoutInflater.inflate(R.layout.app_popup_password_changed, null, false);
-                    mPopupView.setBackgroundResource(R.drawable.app_dialog_bg);
-                    mLoginDialog.setContentView(mPopupView);
-                    mLoginDialog.setCancelable(true);
-                    mLoginDialog.show();
-                    mUtility.setDialogFullScreen(mActivity, mLoginDialog, -1);
-
-                    TextView mTxtHeading = (TextView) mPopupView.findViewById(R.id.txt_title);
-                    TextView mTxtSubHeading = (TextView) mPopupView.findViewById(R.id.txt_message);
-                    RippleView mRvCancel = (RippleView) mPopupView.findViewById(R.id.rv_ok);
-                    mTxtHeading.setText("PERMISSION REQUIRED");
-                    mTxtSubHeading.setText(information);
-
-                    mRvCancel.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
-                        @Override
-                        public void onComplete(RippleView rippleView) {
-                            if (mLoginDialog != null && mLoginDialog.isShowing()) {
-                                mLoginDialog.dismiss();
-                            }
-                            mLoginDialog = null;
-                            if (Build.VERSION.SDK_INT >= 23) {
-                                requestPermissions(new String[]{permissions}, REQUEST_CODE);
-                            }
-                        }
-                    });
-                } catch (Exception e) {
-                    try {
-                        if (Build.VERSION.SDK_INT >= 23) {
-                            requestPermissions(new String[]{permissions}, REQUEST_CODE);
-                        }
-                    } catch (Exception e1) {
-                        e1.printStackTrace();
-                    }
-                    e.printStackTrace();
+        if (Build.VERSION.SDK_INT < 23) {
+            return;
+        }
+        if (shouldShowRequestPermissionRationale(permissions)) {
+            try {
+                if (this.mLoginDialog == null) {
+                    this.mLoginDialog = this.mUtility.getDialog(mActivity);
                 }
-            } else {
-                requestPermissions(new String[]{permissions}, REQUEST_CODE);
+                this.mPopupView = this.mLayoutInflater.inflate(R.layout.app_popup_password_changed, null, false);
+                this.mPopupView.setBackgroundResource(R.drawable.app_dialog_bg);
+                this.mLoginDialog.setContentView(this.mPopupView);
+                this.mLoginDialog.setCancelable(true);
+                this.mLoginDialog.show();
+                this.mUtility.setDialogFullScreen(mActivity, this.mLoginDialog, -1);
+                TextView mTxtSubHeading = (TextView) this.mPopupView.findViewById(R.id.txt_message);
+                RippleView mRvCancel = (RippleView) this.mPopupView.findViewById(R.id.rv_ok);
+                ((TextView) this.mPopupView.findViewById(R.id.txt_title)).setText("PERMISSION REQUIRED");
+                mTxtSubHeading.setText(information);
+                mRvCancel.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
+                    public void onComplete(RippleView rippleView) {
+                        if (NewCTQ.this.mLoginDialog != null && NewCTQ.this.mLoginDialog.isShowing()) {
+                            NewCTQ.this.mLoginDialog.dismiss();
+                        }
+                        NewCTQ.this.mLoginDialog = null;
+                        if (Build.VERSION.SDK_INT >= 23) {
+                            NewCTQ.this.requestPermissions(new String[]{permissions}, 100);
+                        }
+                    }
+                });
+                return;
+            } catch (Exception e) {
+                try {
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        requestPermissions(new String[]{permissions}, 100);
+                    }
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+                e.printStackTrace();
+                return;
             }
         }
+        requestPermissions(new String[]{permissions}, 100);
     }
 
-    /**
-     * Callback received when a permissions request has been completed.
-     */
-    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE) {
-            if (PermissionUtil.verifyPermissions(grantResults)) {
-                if (mTask != null) {
-                    mTask.run();
-                }
-            } else {
-                Utility.logging("Required Permission");
-            }
+        if (requestCode != 100) {
+            return;
+        }
+        if (!PermissionUtil.verifyPermissions(grantResults)) {
+            Utility.logging("Required Permission");
+        } else if (this.mTask != null) {
+            this.mTask.run();
         }
     }
 
-
-    @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent mIntent = new Intent(getApplicationContext(), HomePage.class);
+        mIntent.putExtra("Details", true);
         startActivity(mIntent);
         finish();
     }
@@ -481,12 +485,10 @@ public class NewCTQ extends Activity {
     private String encodeImage(Bitmap bm) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG, 50, stream);
-        byte[] byte_arr = stream.toByteArray();
-        String imageStr = Base64.encodeToString(byte_arr, Base64.DEFAULT);
-        return imageStr;
+        return Base64.encodeToString(stream.toByteArray(), 0);
     }
 
-    ImageModel AddImageModelData(String filepath, String fileName,Boolean server) {
+    ImageModel AddImageModelData(String filepath, String fileName, Boolean server) {
         ImageModel mImageModel = new ImageModel();
         mImageModel.setFileName(fileName);
         mImageModel.setBaseImage(filepath);

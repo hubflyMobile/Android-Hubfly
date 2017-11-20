@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "E:\\Hubfly\\Android\\Hubfly\\CTQ-V6\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-h720dp-v13\\values-h720dp-v13.xml",
+        "outputFile": "E:\\Hubfly\\Android\\Sakthi\\CTQ\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-h720dp-v13\\values-h720dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 117
                 },
                 "from": {
-                    "file": "C:\\Users\\HariMurugesan\\.android\\build-cache\\aa588d51790d4a2610e2964b9a0fd4da2f05d1e1\\output\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
+                    "file": "C:\\Users\\HariMurugesan\\.android\\build-cache\\b8aa9edda7ece8a3c77a002ed00cc770b7ae954a\\output\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

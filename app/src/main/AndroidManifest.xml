@@ -3,20 +3,19 @@
     package="com.hubfly.ctq">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 
     <application
-        android:name=".util.BaseApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@drawable/ic_launch"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:largeHeap="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.Splash"
@@ -28,24 +27,31 @@
             </intent-filter>
         </activity>
 
+
         <activity
             android:name=".activity.Login"
             android:screenOrientation="landscape" />
         <activity
             android:name=".activity.HomePage"
             android:screenOrientation="landscape" />
-
         <activity
             android:name=".activity.DummyActivity"
             android:screenOrientation="landscape" />
-
         <activity
             android:name=".activity.NewCTQ"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.ClosedCTQDetails"
+            android:screenOrientation="landscape" />
+
         <service
             android:name=".util.CommonService"
             android:enabled="true" />
 
+
     </application>
 
 </manifest>
+
+
+

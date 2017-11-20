@@ -18,6 +18,25 @@ public class OpenCtqModel {
     String CTQ;
     String QAP;
 
+    public String getGroupCodeHF() {
+        return GroupCodeHF;
+    }
+
+    public void setGroupCodeHF(String groupCodeHF) {
+        GroupCodeHF = groupCodeHF;
+    }
+
+    String GroupCodeHF;
+
+    public int getProcessTypeHF() {
+        return ProcessTypeHF;
+    }
+
+    public void setProcessTypeHF(int processTypeHF) {
+        ProcessTypeHF = processTypeHF;
+    }
+
+    int ProcessTypeHF;
     public ArrayList<ActivityModel> getmAlCtq() {
         return mAlCtq;
     }

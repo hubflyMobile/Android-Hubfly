@@ -21,12 +21,13 @@ import com.hubfly.ctq.util.Utility;
 
 public class Login extends Activity {
 
-    String RTFA_Value = "";
     String FedAuth_Value = "";
-    ProgressDialog progressDialog;
-    WebView mWebView;
-    Boolean LoadUrl = false;
+    Boolean LoadUrl = Boolean.valueOf(false);
+    String RTFA_Value = "";
     SessionManager mSessionManager;
+    Utility mUtility;
+    WebView mWebView;
+    ProgressDialog progressDialog;
 
 
     @Override
@@ -42,7 +43,7 @@ public class Login extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mWebView.setVisibility(View.VISIBLE);
+                Login.this.mWebView.setVisibility(View.VISIBLE);
             }
         }, 3000);
     }
@@ -52,7 +53,7 @@ public class Login extends Activity {
      */
     void Initialization() {
         mSessionManager = new SessionManager(Login.this);
-
+        this.mUtility = new Utility(this);
         if (progressDialog == null) {
             progressDialog = new ProgressDialog(Login.this);
             progressDialog.setMessage("Loading...");
@@ -75,50 +76,45 @@ public class Login extends Activity {
         }
         mWebView.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                CookieManager cookieManager = CookieManager.getInstance();
-                String Cookies = cookieManager.getCookie(Config.LoginUrl + "/SitePages/Home.aspx?AjaxDelta=1");
+                String Cookies = CookieManager.getInstance().getCookie(Config.LoginUrl + "/SitePages/Home.aspx?AjaxDelta=1");
                 if (Cookies != null && Cookies.contains("rtFa")) {
                     String[] seperated = Cookies.split(";");
                     for (int i = 0; i <= seperated.length - 1; i++) {
                         if (seperated[i].contains("rtFa")) {
-                            RTFA_Value = seperated[i].replace("rtFa=", "");
-                            Config.Rtfa = RTFA_Value;
+                            Login.this.RTFA_Value = seperated[i].replace("rtFa=", "");
+                            Config.Rtfa = Login.this.RTFA_Value;
                         }
                         if (seperated[i].contains("FedAuth")) {
-                            FedAuth_Value = seperated[i].substring(9);
-                            Config.FedAuth = FedAuth_Value;
+                            Login.this.FedAuth_Value = seperated[i].substring(9);
+                            Config.FedAuth = Login.this.FedAuth_Value;
                         }
-                        LoadUrl = true;
+                        Login.this.LoadUrl = Boolean.valueOf(true);
                     }
-                    mSessionManager.createLoginSession(FedAuth_Value, RTFA_Value);
+                    Login.this.mSessionManager.createLoginSession(Login.this.FedAuth_Value, Login.this.RTFA_Value);
                 }
-
-                if (FedAuth_Value != null && !FedAuth_Value.equals("") && RTFA_Value != null && !RTFA_Value.equals("")) {
-
-                    if (!LoadUrl) {
-                        progressDialog.show();
+                if (!(Login.this.FedAuth_Value == null || Login.this.FedAuth_Value.equals("") || Login.this.RTFA_Value == null || Login.this.RTFA_Value.equals(""))) {
+                    if (!Login.this.LoadUrl.booleanValue()) {
+                        Login.this.progressDialog.show();
                     }
-
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            if (progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                                progressDialog = null;
+                            if (Login.this.progressDialog.isShowing()) {
+                                Login.this.progressDialog.dismiss();
+                                Login.this.progressDialog = null;
                             }
+                            Login.this.mSessionManager.SetCurrentTimeStamp(Login.this.mUtility.setCurrentTimeStamp());
                             try {
-                                Intent mIntent = new Intent(getApplicationContext(), DummyActivity.class);
-                                startActivity(mIntent);
-                                finish();
+                                Login.this.startActivity(new Intent(Login.this.getApplicationContext(), DummyActivity.class));
+                                Login.this.finish();
                             } catch (Exception exception) {
                                 exception.printStackTrace();
                             }
                         }
-                    }, 3000);
+                    }, 6000);
                 }
                 return super.shouldOverrideUrlLoading(view, url);
             }
-
         });
     }
 

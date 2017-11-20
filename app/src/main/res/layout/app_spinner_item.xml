@@ -7,4 +7,4 @@
     android:ellipsize="marquee"
     android:textColor="@color/black"
     android:textSize="@dimen/txt_small"
-    android:textAlignment="inherit"/>
+    android:textAlignment="inherit" />

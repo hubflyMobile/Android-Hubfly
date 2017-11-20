@@ -77,7 +77,6 @@
                 </LinearLayout>
 
 
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -112,6 +111,7 @@
                         android:textColor="@color/title_sub_txt_name_color"
                         android:textSize="@dimen/txt_small_medium" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.hubfly.ctq.Model.OpenCtqModel;
 import com.hubfly.ctq.R;
 import com.hubfly.ctq.activity.NewCTQ;
+import com.hubfly.ctq.util.Config;
 import com.hubfly.ctq.util.RippleView;
 
 import java.util.ArrayList;
@@ -97,16 +98,26 @@ public class CtoListAdapter extends RecyclerView.Adapter<CtoListAdapter.DataObje
         holder.mTxtCustName.setText(mCtoModel.getCustname());
         holder.mTxtJobCode.setText(mCtoModel.getJobCode());
         holder.mTxtPartName.setText(mCtoModel.getPartname());
-        holder.mTxtHeatedNo.setText(mCtoModel.getHeatNo());
+
         holder.mTxtCtq.setText(mCtoModel.getCTQStatus());
         holder.mTxtQap.setText(mCtoModel.getQAPStatus());
 
         holder.mRvCTO.setClickable(true);
 
-        if (Option) {
-            holder.mRvCTO.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
-                @Override
-                public void onComplete(RippleView rippleView) {
+        if (Config.Department.toLowerCase().equals(Config.CORE_SHOP_CS1) || Config.Department.toLowerCase().equals(Config.CORE_SHOP_CS2) || Config.Department.toLowerCase().equals(Config.PATTERN_SHOP) || Config.Department.toLowerCase().equals(Config.CORE_SHOP)) {
+            if (mCtoModel.getProcessTypeHF() > 0) {
+                holder.mTxtHeatedNo.setText(mCtoModel.getProcessTypeHF());
+            }else {
+                holder.mTxtHeatedNo.setText(null);
+            }
+        } else {
+            holder.mTxtHeatedNo.setText(mCtoModel.getHeatNo());
+        }
+
+        holder.mRvCTO.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
+            @Override
+            public void onComplete(RippleView rippleView) {
+                if (Option) {
                     Gson gson = new Gson();
                     String jsonCtq = gson.toJson(mCtoModel.getmAlCtq());
                     String jsonQap = gson.toJson(mCtoModel.getmAlQap());
@@ -118,12 +129,26 @@ public class CtoListAdapter extends RecyclerView.Adapter<CtoListAdapter.DataObje
                     mIntent.putExtra("JOBCODE", mCtoModel.getJobCode());
                     mIntent.putExtra("CTQSTATUS", mCtoModel.getCTQStatus());
                     mIntent.putExtra("QAPSTATUS", mCtoModel.getQAPStatus());
+                    mIntent.putExtra("GROUPCODE", mCtoModel.getGroupCodeHF());
+                    mActivity.startActivity(mIntent);
+                } else {
+                    Gson gson = new Gson();
+                    String jsonCtq = gson.toJson(mCtoModel.getmAlCtq());
+                    String jsonQap = gson.toJson(mCtoModel.getmAlQap());
+                    Intent mIntent = new Intent(mActivity, NewCTQ.class);
+                    mIntent.putExtra("CTQ", jsonCtq);
+                    mIntent.putExtra("QAP", jsonQap);
+                    mIntent.putExtra("CUSTOMERNAME", mCtoModel.getCustname());
+                    mIntent.putExtra("PARTNAME", mCtoModel.getPartname());
+                    mIntent.putExtra("JOBCODE", mCtoModel.getJobCode());
+                    mIntent.putExtra("CTQSTATUS", mCtoModel.getCTQStatus());
+                    mIntent.putExtra("QAPSTATUS", mCtoModel.getQAPStatus());
+                    mIntent.putExtra("GROUPCODE", mCtoModel.getGroupCodeHF());
                     mActivity.startActivity(mIntent);
                 }
-            });
-        } else {
-            holder.mRvCTO.setClickable(false);
-        }
+            }
+        });
+
 
     }
 

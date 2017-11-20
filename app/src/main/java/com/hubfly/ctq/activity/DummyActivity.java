@@ -17,9 +17,6 @@ import com.hubfly.ctq.util.Utility;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.XML;
-
-import static com.hubfly.ctq.util.Config.mUserDetailsModel;
 
 /**
  * Created by Admin on 12-07-2017.
@@ -34,7 +31,7 @@ public class DummyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dummy);
         Initialization();
-        getUserProfile("1");
+        getUserProfile();
     }
 
 
@@ -44,51 +41,26 @@ public class DummyActivity extends Activity {
     }
 
 
-    void getUserProfile(String option) {
+    void getUserProfile() {
         try {
             if (Utility.isInternetConnected(DummyActivity.this)) {
                 final JSONObject mJsonObject = mUtility.SendParams(DummyActivity.this, null, null, null);
-                HttpApi api = null;
-                if (option.equals("1")) {
-                    api = new HttpApi(DummyActivity.this, false, new OnResponseCallback() {
-                        @Override
-                        public void responseCallBack(Activity activity, String responseString) {
-                            if (responseString != null && !responseString.equals("")) {
-                                mSessionManager.setProfileDetails(responseString);
-                                ParseProfileData(responseString);
-                                StartService(mJsonObject.toString(), responseString);
-                            }
+                HttpApi api = new HttpApi(DummyActivity.this, false, new OnResponseCallback() {
+                    @Override
+                    public void responseCallBack(Activity activity, String responseString) {
+                        if (responseString != null && !responseString.equals("")) {
+                            mSessionManager.setProfileDetails(responseString);
+                            ParseProfileData(responseString);
+//                            StartService(mJsonObject.toString(), responseString);
                         }
-                    }, Config.Baseurl + Config.GetUserDetails, "POST", mJsonObject);
-                } else {
-                    api = new HttpApi(DummyActivity.this,  true, mUserProfilePictureCallBack, Config.ImageUrl + Config.UserProfile, "GET", mJsonObject);
-                }
+                    }
+                }, Config.Baseurl + Config.GetUserDetails, "POST", mJsonObject);
                 api.execute();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
-    public OnResponseCallback mUserProfilePictureCallBack = new OnResponseCallback() {
-        @Override
-        public void responseCallBack(Activity activity, String responseString) {
-            try {
-                if (responseString != null && !responseString.equals("")) {
-                    mSessionManager.setProfilePicture(responseString);
-                    ParseProfilePicture(responseString);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }finally {
-                Intent mIntent = new Intent(DummyActivity.this, HomePage.class);
-                startActivity(mIntent);
-                finish();
-            }
-        }
-    };
-
 
     public OnResponseCallback mOnResponseCallbackPart = new OnResponseCallback() {
         @Override
@@ -108,7 +80,10 @@ public class DummyActivity extends Activity {
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
-                getUserProfile("2");
+                Intent mIntent = new Intent(DummyActivity.this, HomePage.class);
+                mIntent.putExtra("Details", true);
+                startActivity(mIntent);
+                finish();
             }
         }
     };
@@ -117,42 +92,29 @@ public class DummyActivity extends Activity {
     public void ParseProfileData(final String responseString) {
         String department = "", userId = "";
         try {
-            if (responseString != null && !responseString.equals("")) {
-                UserDetailsModel userDetailsModel = null;
+            if (!responseString.equals("")) {
                 JSONObject mJsonObject = new JSONObject(responseString);
-                userDetailsModel = new UserDetailsModel();
+                UserDetailsModel userDetailsModel = new UserDetailsModel();
                 Config.UserName = mJsonObject.getString("Title");
-                Config.Department = mJsonObject.getString("Department");
                 userDetailsModel.setTitle(mJsonObject.getString("Title"));
                 if (mJsonObject.has("Department")) {
                     userDetailsModel.setDepartment(mJsonObject.getString("Department"));
                     department = mJsonObject.getString("Department");
+//                    Config.Department = "melting";
+                    Config.Department = department;
                 }
                 if (mJsonObject.has("UserId")) {
                     userDetailsModel.setUserId(mJsonObject.getInt("UserId"));
                     userId = mJsonObject.getString("UserId");
                 }
-                mUserDetailsModel = userDetailsModel;
-                if (department != null && !department.equals("") && userId != null && !userId.equals("")) {
-                    getPartDetails(userDetailsModel);
-                } else {
-                    getUserProfile("1");
+                if (mJsonObject.has("Email")) {
+                    Config.Email = mJsonObject.getString("Email");
                 }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void ParseProfilePicture(String responseString) {
-        try {
-            if (responseString != null && !responseString.equals("")) {
-                JSONObject mJsonObject = XML.toJSONObject(responseString);
-                if (mJsonObject.has("d:PictureUrl")) {
-                    if (mJsonObject.getJSONObject("d:PictureUrl").has("content")) {
-                        Config.PictureUrl = mJsonObject.getJSONObject("d:PictureUrl").getString("content");
-                    }
+                Config.mUserDetailsModel = userDetailsModel;
+                if (department == null || department.equals("") || userId == null || userId.equals("")) {
+                    getUserProfile();
+                } else {
+                    getPartDetails(userDetailsModel);
                 }
             }
         } catch (JSONException e) {
@@ -181,7 +143,7 @@ public class DummyActivity extends Activity {
                 JSONObject jsonObj = new JSONObject(UserDetails);
                 jsonObject.put("UserDetails", jsonObj);
                 HttpApi api = new HttpApi(DummyActivity.this, false, mOnResponseCallbackPart, Config.Baseurl + Config.GetPartsDeptWise, "POST", jsonObject);
-                StartService(jsonObject.toString(), "");
+//                StartService(jsonObject.toString(), "");
                 api.execute();
             } catch (JSONException e) {
                 e.printStackTrace();

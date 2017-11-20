@@ -1,114 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="arm64-v8a,armeabi-v7a,armeabi"
+    abi="armeabi-v7a,armeabi"
     api-level="23"
     build-mode="COLD"
-    density="xxhdpi"
+    density="xhdpi"
     format="10"
     plugin-version="2.3.3"
-    timestamp="1510309396700"
-    token="-5766321587209638819"
+    timestamp="1511178024444"
+    token="-7371235507734062559"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="973" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="320" />
+        duration="0" />
     <task
         name="verifier"
-        duration="95" />
-
-    <artifact
-        location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-        type="SPLIT" />
-    <artifact
-        location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
-        type="SPLIT" />
-    <artifact
-        location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
-        type="SPLIT" />
-    <artifact
-        location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\outputs\apk\app-debug.apk"
-        type="SPLIT_MAIN" />
+        duration="0" />
 
     <build
         build-mode="FULL"
-        timestamp="1510296068810"
+        timestamp="1511176113385"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
         <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
-            type="SPLIT" />
-        <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\outputs\apk\app-debug.apk"
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\outputs\apk\app-debug.apk"
             type="SPLIT_MAIN" />
         <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
             type="SPLIT" />
         <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
         <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
             type="SPLIT" />
         <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
     </build>
     <build
         build-mode="COLD"
-        timestamp="1510299418333"
+        timestamp="1511177885462"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        timestamp="1510306258369"
-        verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\outputs\apk\app-debug.apk"
+            location="E:\Hubfly\Android\Sakthi\CTQ\app\build\outputs\apk\app-debug.apk"
             type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        timestamp="1510309396700"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
-            type="SPLIT" />
-        <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
-            type="SPLIT" />
-        <artifact
-            location="E:\Hubfly\Android\Hubfly\CTQ-V6\app\build\outputs\apk\app-debug.apk"
-            type="SPLIT_MAIN" />
-    </build>
+        timestamp="1511178024444"
+        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>

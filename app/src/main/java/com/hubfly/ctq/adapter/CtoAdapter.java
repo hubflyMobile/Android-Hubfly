@@ -118,7 +118,11 @@ public class CtoAdapter extends RecyclerView.Adapter<CtoAdapter.DataObjectHolder
                     hideshow(true);
                 } else {
                     mNewCTQ.mEdtCtoValue.setText(String.valueOf(model.getCTQValueHF()));
-                    mNewCTQ.mEdtRemarks.setText(model.getRemarks());
+                    if (model.getRemarks() != null && !model.getRemarks().equals("") && !model.getRemarks().equals("null")) {
+                        mNewCTQ.mEdtRemarks.setText(model.getRemarks());
+                    } else {
+                        mNewCTQ.mEdtRemarks.setText("");
+                    }
                     hideshow(false);
                 }
             }
@@ -129,7 +133,7 @@ public class CtoAdapter extends RecyclerView.Adapter<CtoAdapter.DataObjectHolder
             public void onComplete(RippleView rippleView) {
                 if (mUtility.validation(mActivity, mNewCTQ.mEdtCtoValue, "CTQ")) {
                     if (Utility.isInternetConnected(mActivity)) {
-                        GenerateNewCtq(mActivity, mAlCto.get(lastCheckedPos).getIndex(), mNewCTQ.mEdtCtoValue.getText().toString(), mNewCTQ.mEdtRemarks.getText().toString(), lastCheckedPos, mAlCto.get(lastCheckedPos).getTaskName(),mAlCto.get(lastCheckedPos).getCTQMinValueHF(),mAlCto.get(lastCheckedPos).getCTQMaxValueHF(),mAlCto.get(lastCheckedPos).getQACJobIDHF());
+                        GenerateNewCtq(mActivity, mAlCto.get(lastCheckedPos).getIndex(), mNewCTQ.mEdtCtoValue.getText().toString(), mNewCTQ.mEdtRemarks.getText().toString(), lastCheckedPos, mAlCto.get(lastCheckedPos).getTaskName(), mAlCto.get(lastCheckedPos).getCTQMinValueHF(), mAlCto.get(lastCheckedPos).getCTQMaxValueHF(), mAlCto.get(lastCheckedPos).getQACJobIDHF());
                     }
                 }
             }
@@ -146,7 +150,7 @@ public class CtoAdapter extends RecyclerView.Adapter<CtoAdapter.DataObjectHolder
     }
 
 
-    private void GenerateNewCtq(final Activity mActivity, Integer ID, final String CtqValue, final String Remarks, final int Position, final String taskname,final double minValue,final double maxValue,final int QacJobId) {
+    private void GenerateNewCtq(final Activity mActivity, Integer ID, final String CtqValue, final String Remarks, final int Position, final String taskname, final double minValue, final double maxValue, final int QacJobId) {
         try {
             SendCTQModel mSendCTQModel = new SendCTQModel();
             mSendCTQModel.setID(ID);
@@ -164,7 +168,7 @@ public class CtoAdapter extends RecyclerView.Adapter<CtoAdapter.DataObjectHolder
                 public void responseCallBack(Activity activity, String responseString) {
                     if (responseString != null && responseString.equals("200")) {
 
-                        mUtility.showToast(mActivity,"CTQ Updated Successfully","0");
+                        mUtility.showToast(mActivity, "CTQ Updated Successfully", "0");
 
                         String value = mNewCTQ.mTxtCtqCount.getText().toString();
                         String ctq[] = value.split("/");
@@ -184,8 +188,8 @@ public class CtoAdapter extends RecyclerView.Adapter<CtoAdapter.DataObjectHolder
                         mNewCTQ.mAlCto.set(Position, ctoModel);
                         hideshow(false);
                         notifyDataSetChanged();
-                    }else {
-                        mUtility.showToast(mActivity,"Server Error","0");
+                    } else {
+                        mUtility.showToast(mActivity, "Server Error", "0");
                     }
 
                 }

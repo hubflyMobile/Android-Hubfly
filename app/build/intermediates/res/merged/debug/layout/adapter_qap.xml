@@ -9,43 +9,43 @@
         android:layout_width="match_parent"
         android:layout_height="70dp">
 
-    <LinearLayout
-        android:id="@+id/ll_root_qap"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/white"
-        android:orientation="vertical">
-
         <LinearLayout
+            android:id="@+id/ll_root_qap"
             android:layout_width="match_parent"
-            android:layout_height="67dp"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
+            android:layout_height="70dp"
+            android:background="@color/white"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center">
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-                <RadioButton
-                    android:id="@+id/rb_check"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:button="@drawable/ic_check_box_selector"
-                    android:gravity="center" />
-            </LinearLayout>
+                    android:gravity="center">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_weight=".9"
-                android:gravity="center"
-                android:orientation="vertical">
+                    <RadioButton
+                        android:id="@+id/rb_check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:button="@drawable/ic_check_box_selector"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight=".9"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <com.hubfly.ctq.util.CustomTextView
                         android:id="@+id/txt_task_name"
@@ -56,13 +56,13 @@
                         android:ellipsize="end"
                         android:textColor="@color/title"
                         android:textSize="18sp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/list__border_bg"></LinearLayout>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/list__border_bg"></LinearLayout>
+        </LinearLayout>
     </com.hubfly.ctq.util.RippleView>
 </LinearLayout>

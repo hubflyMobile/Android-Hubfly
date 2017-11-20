@@ -1,147 +1,137 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:2:1-51:12
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:2:1-54:12
 	package
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:3:5-29
-		INJECTED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml
-		INJECTED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:3:5-29
+		INJECTED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml
-		INJECTED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:2:11-69
 	android:versionCode
-		INJECTED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml
-		INJECTED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml
 uses-permission#android.permission.INTERNET
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:5:5-67
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:5:5-67
 	android:name
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:5:22-64
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:5:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:6:5-78
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:6:5-79
 	android:name
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:6:22-76
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:6:22-76
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:7:5-81
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:7:5-81
 	android:name
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:7:22-78
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:7:22-78
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:8:5-80
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:8:5-80
 	android:name
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:8:22-77
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:8:22-77
 application
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:11:5-49:19
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:11:5-52:19
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\HariMurugesan\.android\build-cache\5d0fc9bbb72739882149014df4d16824427943d5\output\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support:design:24.2.0] C:\Users\HariMurugesan\.android\build-cache\b1fb5c02d2710b67efbc5658feaa14617c0a3eae\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\HariMurugesan\.android\build-cache\aa588d51790d4a2610e2964b9a0fd4da2f05d1e1\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\HariMurugesan\.android\build-cache\f2c46707ad37d17e60c878b713139e058fc407dc\output\AndroidManifest.xml:26:5-20
-MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\HariMurugesan\.android\build-cache\9c4b9c341e74304bb4ab8216fcc3ddc357df8e50\output\AndroidManifest.xml:26:5-20
-MERGED from [com.android.support:support-v4:25.3.1] C:\Users\HariMurugesan\.android\build-cache\99d8019b219a481bc894095131ccc7e3c60c2b7c\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\HariMurugesan\.android\build-cache\d18cc1d82b1e49dc5cfbf37a6aaa1fee411f1090\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\HariMurugesan\.android\build-cache\fd3a42fec7dd265421cb770b0dd15fb0ee3c00ff\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\HariMurugesan\.android\build-cache\6ed588cb570f6e27fc16839f7cd4bfcd9093eaf6\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\HariMurugesan\.android\build-cache\b8aa9edda7ece8a3c77a002ed00cc770b7ae954a\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\HariMurugesan\.android\build-cache\95ebb83ebadd200cefdba7ee2b9a0e9ccba33d5a\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\Users\HariMurugesan\.android\build-cache\4a9ad68cbf5a7c82c8cb4a5735ff39a1f337eb35\output\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-v4:24.2.1] C:\Users\HariMurugesan\.android\build-cache\26602ab0442662402d9c0cdce393a8e24c427965\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:24.2.1] C:\Users\HariMurugesan\.android\build-cache\c64f4ce18113fa78901d0bfbe91e351b6dfc99c0\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:24.2.1] C:\Users\HariMurugesan\.android\build-cache\d7aed6a2b3b14478d9d6455fcec951db015128c3\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:24.2.1] C:\Users\HariMurugesan\.android\build-cache\9a47e82626ba1a489e41045cd4b49f3ff45ffe6f\output\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:cardview-v7:21.0.3] C:\Users\HariMurugesan\.android\build-cache\c6b8ceec047d64ee38ffc65c8a1ee23612010e1b\output\AndroidManifest.xml:16:5-19
-MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\HariMurugesan\.android\build-cache\c0f475e93c3b9978db42cf1c21c02b3af98b766d\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-compat:25.3.1] C:\Users\HariMurugesan\.android\build-cache\6f513b6433e1420a2578d9714ee0e17a58e173d7\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:24.2.1] C:\Users\HariMurugesan\.android\build-cache\60d4b870f1000ac75b49318e42b2954c33e5239f\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:24.2.1] C:\Users\HariMurugesan\.android\build-cache\47db3318146fbfdbde22a06dbaf2c32803f49e51\output\AndroidManifest.xml:25:5-20
 	android:label
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:16:9-41
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:15:9-41
 	android:supportsRtl
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:18:9-35
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:18:9-35
 	android:hardwareAccelerated
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:14:9-44
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:13:9-44
 	android:roundIcon
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:17:9-54
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:17:9-54
 	android:allowBackup
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:13:9-35
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:12:9-35
 	android:icon
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:15:9-43
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:14:9-43
 	android:largeHeap
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:19:9-33
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:16:9-33
 	android:theme
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:20:9-40
-	android:name
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:12:9-45
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:19:9-40
 activity#com.hubfly.ctq.activity.Splash
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:21:9-29:20
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:20:9-28:20
 	android:screenOrientation
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:23:13-50
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:22:13-50
 	android:name
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:22:13-44
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:21:13-44
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:24:13-28:29
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:23:13-27:29
 action#android.intent.action.MAIN
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:25:17-69
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:24:17-69
 	android:name
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:25:25-66
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:24:25-66
 category#android.intent.category.LAUNCHER
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:27:17-77
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:26:17-77
 	android:name
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:27:27-74
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:26:27-74
 activity#com.hubfly.ctq.activity.Login
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:31:9-33:53
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:31:9-33:53
 	android:screenOrientation
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:33:13-50
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:33:13-50
 	android:name
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:32:13-43
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:32:13-43
 activity#com.hubfly.ctq.activity.HomePage
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:34:9-36:53
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:34:9-36:53
 	android:screenOrientation
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:36:13-50
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:36:13-50
 	android:name
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:35:13-46
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:35:13-46
 activity#com.hubfly.ctq.activity.DummyActivity
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:38:9-40:53
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:37:9-39:53
 	android:screenOrientation
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:40:13-50
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:39:13-50
 	android:name
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:39:13-51
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:38:13-51
 activity#com.hubfly.ctq.activity.NewCTQ
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:42:9-44:53
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:40:9-42:53
 	android:screenOrientation
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:44:13-50
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:42:13-50
 	android:name
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:43:13-44
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:41:13-44
+activity#com.hubfly.ctq.activity.ClosedCTQDetails
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:43:9-45:53
+	android:screenOrientation
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:45:13-50
+	android:name
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:44:13-54
 service#com.hubfly.ctq.util.CommonService
-ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:45:9-47:38
+ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:47:9-49:38
 	android:enabled
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:47:13-35
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:49:13-35
 	android:name
-		ADDED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml:46:13-47
+		ADDED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml:48:13-47
 uses-sdk
-INJECTED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\HariMurugesan\.android\build-cache\5d0fc9bbb72739882149014df4d16824427943d5\output\AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support:multidex:1.0.0] C:\Users\HariMurugesan\.android\build-cache\c9c249d7d8cc3fc70bfa45a3d6c3041d2ba32715\output\AndroidManifest.xml:18:5-42
 MERGED from [com.android.support:design:24.2.0] C:\Users\HariMurugesan\.android\build-cache\b1fb5c02d2710b67efbc5658feaa14617c0a3eae\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\HariMurugesan\.android\build-cache\aa588d51790d4a2610e2964b9a0fd4da2f05d1e1\output\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\HariMurugesan\.android\build-cache\f2c46707ad37d17e60c878b713139e058fc407dc\output\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\HariMurugesan\.android\build-cache\9c4b9c341e74304bb4ab8216fcc3ddc357df8e50\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:25.3.1] C:\Users\HariMurugesan\.android\build-cache\99d8019b219a481bc894095131ccc7e3c60c2b7c\output\AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\HariMurugesan\.android\build-cache\d18cc1d82b1e49dc5cfbf37a6aaa1fee411f1090\output\AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\HariMurugesan\.android\build-cache\fd3a42fec7dd265421cb770b0dd15fb0ee3c00ff\output\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\HariMurugesan\.android\build-cache\6ed588cb570f6e27fc16839f7cd4bfcd9093eaf6\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\HariMurugesan\.android\build-cache\b8aa9edda7ece8a3c77a002ed00cc770b7ae954a\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\HariMurugesan\.android\build-cache\95ebb83ebadd200cefdba7ee2b9a0e9ccba33d5a\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\Users\HariMurugesan\.android\build-cache\4a9ad68cbf5a7c82c8cb4a5735ff39a1f337eb35\output\AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:support-v4:24.2.1] C:\Users\HariMurugesan\.android\build-cache\26602ab0442662402d9c0cdce393a8e24c427965\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:24.2.1] C:\Users\HariMurugesan\.android\build-cache\c64f4ce18113fa78901d0bfbe91e351b6dfc99c0\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:24.2.1] C:\Users\HariMurugesan\.android\build-cache\d7aed6a2b3b14478d9d6455fcec951db015128c3\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:24.2.1] C:\Users\HariMurugesan\.android\build-cache\9a47e82626ba1a489e41045cd4b49f3ff45ffe6f\output\AndroidManifest.xml:21:5-23:61
 MERGED from [com.android.support:cardview-v7:21.0.3] C:\Users\HariMurugesan\.android\build-cache\c6b8ceec047d64ee38ffc65c8a1ee23612010e1b\output\AndroidManifest.xml:15:5-42
 MERGED from [com.android.support:recyclerview-v7:24.2.0] C:\Users\HariMurugesan\.android\build-cache\9706d57b8cfc2df199f41e3aeb3d8281b535b4d4\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\HariMurugesan\.android\build-cache\c0f475e93c3b9978db42cf1c21c02b3af98b766d\output\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:25.3.1] C:\Users\HariMurugesan\.android\build-cache\6f513b6433e1420a2578d9714ee0e17a58e173d7\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:24.2.1] C:\Users\HariMurugesan\.android\build-cache\60d4b870f1000ac75b49318e42b2954c33e5239f\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:24.2.1] C:\Users\HariMurugesan\.android\build-cache\47db3318146fbfdbde22a06dbaf2c32803f49e51\output\AndroidManifest.xml:21:5-23:58
 	tools:overrideLibrary
-		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\HariMurugesan\.android\build-cache\aa588d51790d4a2610e2964b9a0fd4da2f05d1e1\output\AndroidManifest.xml:23:9-75
+		ADDED from [com.android.support:appcompat-v7:24.2.1] C:\Users\HariMurugesan\.android\build-cache\b8aa9edda7ece8a3c77a002ed00cc770b7ae954a\output\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
-		INJECTED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml
-		INJECTED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml
-		INJECTED from E:\Hubfly\Android\Hubfly\CTQ-V6\app\src\main\AndroidManifest.xml
-meta-data#android.support.VERSION
-ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\HariMurugesan\.android\build-cache\aa588d51790d4a2610e2964b9a0fd4da2f05d1e1\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\HariMurugesan\.android\build-cache\f2c46707ad37d17e60c878b713139e058fc407dc\output\AndroidManifest.xml:22:5-24:34
-MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\HariMurugesan\.android\build-cache\9c4b9c341e74304bb4ab8216fcc3ddc357df8e50\output\AndroidManifest.xml:22:5-24:34
-MERGED from [com.android.support:support-v4:25.3.1] C:\Users\HariMurugesan\.android\build-cache\99d8019b219a481bc894095131ccc7e3c60c2b7c\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\HariMurugesan\.android\build-cache\d18cc1d82b1e49dc5cfbf37a6aaa1fee411f1090\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\HariMurugesan\.android\build-cache\fd3a42fec7dd265421cb770b0dd15fb0ee3c00ff\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\HariMurugesan\.android\build-cache\6ed588cb570f6e27fc16839f7cd4bfcd9093eaf6\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\HariMurugesan\.android\build-cache\c0f475e93c3b9978db42cf1c21c02b3af98b766d\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-compat:25.3.1] C:\Users\HariMurugesan\.android\build-cache\6f513b6433e1420a2578d9714ee0e17a58e173d7\output\AndroidManifest.xml:25:5-27:34
-	android:value
-		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\HariMurugesan\.android\build-cache\aa588d51790d4a2610e2964b9a0fd4da2f05d1e1\output\AndroidManifest.xml:27:9-31
-	android:name
-		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\HariMurugesan\.android\build-cache\aa588d51790d4a2610e2964b9a0fd4da2f05d1e1\output\AndroidManifest.xml:26:9-47
+		INJECTED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Hubfly\Android\Sakthi\CTQ\app\src\main\AndroidManifest.xml

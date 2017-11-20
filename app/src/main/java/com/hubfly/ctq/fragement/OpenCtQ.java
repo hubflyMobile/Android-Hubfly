@@ -19,7 +19,6 @@ import com.hubfly.ctq.Model.ActivityModel;
 import com.hubfly.ctq.Model.ImageModel;
 import com.hubfly.ctq.Model.OpenCtqModel;
 import com.hubfly.ctq.R;
-import com.hubfly.ctq.activity.NewCTQ;
 import com.hubfly.ctq.adapter.CtoListAdapter;
 import com.hubfly.ctq.util.Config;
 import com.hubfly.ctq.util.GlideUtil;
@@ -40,17 +39,23 @@ import java.util.ArrayList;
 
 public class OpenCtQ extends Fragment {
 
-    RippleView mRvImgNavigation;
-    TextView mTxtHeading;
-    ArrayList<OpenCtqModel> mAlOpenCtq;
+    Boolean isHeatNo = Boolean.valueOf(false);
     CtoListAdapter mAdapter;
-    RecyclerView mRvOpenCTQ;
-    Utility mUtility;
-    LinearLayout mLlOpenCtq, mLlNoData, mLlRootList;
+    ArrayList<OpenCtqModel> mAlOpenCtq;
     EditText mEdtSearch;
-    ImageView mImgClear,mImgProfile;
     GlideUtil mGlideUtil;
+    ImageView mImgClear;
+    ImageView mImgProfile;
+    LinearLayout mLlHeatNoOpen;
+    LinearLayout mLlNoData;
+    LinearLayout mLlOpenCtq;
+    LinearLayout mLlRootList;
+    RippleView mRvImgNavigation;
+    RecyclerView mRvOpenCTQ;
+    TextView mTxtHeading;
+    TextView mTxtHeatNoOpen;
     TextView mTxtUserName;
+    Utility mUtility;
 
 
     @Nullable
@@ -73,27 +78,43 @@ public class OpenCtQ extends Fragment {
     }
 
     void InitiizationViews(View rootView) {
-        mRvImgNavigation = (RippleView) rootView.findViewById(R.id.rv_back);
-        mTxtHeading = (TextView) rootView.findViewById(R.id.txt_title);
-        mLlOpenCtq = (LinearLayout) rootView.findViewById(R.id.ll_open_ctq);
-        mLlNoData = (LinearLayout) rootView.findViewById(R.id.ll_no_data);
-        mLlRootList = (LinearLayout) rootView.findViewById(R.id.ll_root_list);
-        mEdtSearch = (EditText) rootView.findViewById(R.id.edt_search);
-        mImgClear = (ImageView) rootView.findViewById(R.id.img_clear);
-        mRvOpenCTQ = mUtility.CustomRecycleView(getActivity(), mLlOpenCtq);
-        mTxtHeading.setText("Open Quality Assurance Check");
+        this.mRvImgNavigation = (RippleView) rootView.findViewById(R.id.rv_back);
+        this.mTxtHeading = (TextView) rootView.findViewById(R.id.txt_title);
+        this.mLlOpenCtq = (LinearLayout) rootView.findViewById(R.id.ll_open_ctq);
+        this.mLlNoData = (LinearLayout) rootView.findViewById(R.id.ll_no_data);
+        this.mLlRootList = (LinearLayout) rootView.findViewById(R.id.ll_root_list);
+        this.mEdtSearch = (EditText) rootView.findViewById(R.id.edt_search);
+        this.mImgClear = (ImageView) rootView.findViewById(R.id.img_clear);
+        this.mRvOpenCTQ = this.mUtility.CustomRecycleView(getActivity(), this.mLlOpenCtq);
+        this.mImgProfile = (ImageView) rootView.findViewById(R.id.img_profile);
+        this.mTxtUserName = (TextView) rootView.findViewById(R.id.txt_name);
+        this.mLlHeatNoOpen = (LinearLayout) rootView.findViewById(R.id.ll_heat_no_open);
+        this.mTxtHeatNoOpen = (TextView) rootView.findViewById(R.id.txt_heat_no_open);
+        this.mTxtHeading.setText("Open Quality Assurance Check");
+        this.mTxtUserName.setText(Config.UserName);
+        if (!(Config.Email == null || Config.Email.equals(""))) {
+            String Image = Config.UserProfilePhoto + Config.Email;
+            this.mGlideUtil.LoadImages(this.mImgProfile, Integer.valueOf(1), Image, true, Float.valueOf(1.75f), Image);
+        }
+        this.mLlRootList.setVisibility(View.GONE);
+        this.mUtility.HideShowKeyboard(getActivity(), this.mEdtSearch, "0");
+        HideShowDepartMent();
+    }
 
-        mImgProfile = (ImageView)rootView. findViewById(R.id.img_profile);
-
-        mLlRootList.setVisibility(View.GONE);
-        mUtility.HideShowKeyboard(getActivity(), mEdtSearch, "0");
-
-        mTxtUserName = (TextView)rootView.findViewById(R.id.txt_name);
-        mTxtUserName.setText(Config.UserName);
-
-
-        if (Config.PictureUrl != null && !Config.PictureUrl.equals("")) {
-            mGlideUtil.LoadImages(mImgProfile, 1, Config.PictureUrl, true, 1.5f, Config.PictureUrl);
+    void HideShowDepartMent() {
+        if (Config.Department != null && !Config.Department.equals("")) {
+            if (Config.Department.toLowerCase().equals(Config.CORE_SHOP)) {
+                this.isHeatNo = Boolean.valueOf(false);
+                this.mLlHeatNoOpen.setVisibility(View.GONE);
+                return;
+            }
+            if (Config.Department.toLowerCase().equals(Config.CORE_SHOP_CS1) || Config.Department.toLowerCase().equals(Config.CORE_SHOP_CS2) || Config.Department.toLowerCase().equals(Config.PATTERN_SHOP) || Config.Department.toLowerCase().equals(Config.CORE_SHOP)) {
+                this.mTxtHeatNoOpen.setText("Process Type");
+            } else {
+                this.mTxtHeatNoOpen.setText("Heat Number");
+            }
+            this.isHeatNo = Boolean.valueOf(true);
+            this.mLlHeatNoOpen.setVisibility(View.VISIBLE);
         }
     }
 
@@ -170,6 +191,12 @@ public class OpenCtQ extends Fragment {
                     for (int i = 0; i < mJsonArray.length(); i++) {
                         JSONObject mJsonObject = mJsonArray.getJSONObject(i);
                         OpenCtqModel mOpenCtqModel = mUtility.SetOpenCtqData(mJsonObject.getInt("PartID"), mJsonObject.getString("HeatNumber"), mJsonObject.getString("CustomerName"), mJsonObject.getString("JobCode"), mJsonObject.getString("PartName"), mJsonObject.getString("CTQStatus"), mJsonObject.getString("QAPStatus"));
+                        if (mJsonObject.has("ProcessTypeHF") && !mJsonObject.getString("ProcessTypeHF").equals("null")) {
+                            mOpenCtqModel.setProcessTypeHF(mJsonObject.getInt("ProcessTypeHF"));
+                        }
+                        if (mJsonObject.has("GroupCodeHF") && !mJsonObject.getString("GroupCodeHF").equals("null")) {
+                            mOpenCtqModel.setGroupCodeHF(mJsonObject.getString("ProcessTypeHF"));
+                        }
                         ArrayList<ActivityModel> mAlCtq = new ArrayList<>();
                         if (mJsonObject.has("CTQJobs")) {
                             JSONArray mCtqJson = mJsonObject.getJSONArray("CTQJobs");
@@ -184,7 +211,7 @@ public class OpenCtQ extends Fragment {
                                 if (mObject.getString("RemarksHF") != null) {
                                     mActivityModel.setRemarksHF(mObject.getString("RemarksHF"));
                                 }
-                                if(mObject.has("QACJobIDHF")){
+                                if (mObject.has("QACJobIDHF")) {
                                     mActivityModel.setQACJobIDHF(mObject.getInt("QACJobIDHF"));
                                 }
                                 mAlCtq.add(mActivityModel);
@@ -207,7 +234,7 @@ public class OpenCtQ extends Fragment {
                                 if (mObject.has("CTQMaxValueHF")) {
                                     mActivityModel.setCTQMaxValueHF(mObject.getDouble("CTQMaxValueHF"));
                                 }
-                                if(mObject.has("QACJobIDHF")){
+                                if (mObject.has("QACJobIDHF")) {
                                     mActivityModel.setQACJobIDHF(mObject.getInt("QACJobIDHF"));
                                 }
                                 ArrayList<ImageModel> mImgAl = new ArrayList<>();
@@ -216,7 +243,7 @@ public class OpenCtQ extends Fragment {
                                     for (int k = 0; k < jsonArray.length(); k++) {
                                         JSONObject jsonObject = jsonArray.getJSONObject(k);
                                         ImageModel mImageModel = new ImageModel();
-                                        mImageModel.setBaseImage(Config.ImageUrl +jsonObject.getString("ServerRelativeUrl"));
+                                        mImageModel.setBaseImage(Config.ImageUrl + jsonObject.getString("ServerRelativeUrl"));
                                         mImageModel.setFileName(jsonObject.getString("FileName"));
                                         mImgAl.add(mImageModel);
                                     }
